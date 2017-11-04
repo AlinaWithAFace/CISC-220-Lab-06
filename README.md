@@ -11,7 +11,7 @@ Lab 6: Binary Search Trees/AVL Trees
 
 **The crux of this**: Reading in a dictionary file into either a Binary Search Tree or a BST modified using AVL (an AVL tree). For this, I used a flag to set whether, as words are being inserted into the binary search tree the tree is also balanced and updated using AVL techniques or not.
 
-Things I didn’t worry about: caps versus small letters.
+Things I didn't worry about: caps versus small letters.
 
 Code you’ll be writing: 
 ---
@@ -40,9 +40,9 @@ void printIO(NodeT *root);
 void printPre(NodeT *root);
 void printPost(NodeT *root);
 ```
-**Note: the below methods  aren’t necessary for a plain Binary Search Tree, but they adjust the heights of nodes, which makes debugging easier.  In addition, if the flag is set, adjustHeights would call the methods that determine whether the balance is okay, and if not, then it determines and calls the appropriate rotations**
+**Note: the below methods aren't necessary for a plain Binary Search Tree, but they adjust the heights of nodes, which makes debugging easier.  In addition, if the flag is set, adjustHeights would call the methods that determine whether the balance is okay, and if not, then it determines and calls the appropriate rotations**
 ```
- void adjustHeights(NodeT *n); //starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.  If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.  To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
+void adjustHeights(NodeT *n); //starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.  If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.  To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
 int getMax(NodeT *n); // This method is a little helper method that determines the max height between the left child and the right child and returns that height.
 ```
 Note: the below methods are just for AVL Trees and are only called when the AVL flag is set to true.
@@ -76,21 +76,36 @@ void getScore();  // This is the new method – each word already has a score.  
 
 To Test:
 ---
-1. (25 pts) Set the flag in main to false, and use the testdict.txt file.  At first, comment out the call to the startGame method in the main function.  Make sure your output looks like my output (included below) for the pre-order , in-order, and post-order printing of the tree.
+1. (25 pts) Set the flag in main to false, and use the testdict.txt file.
+At first, comment out the call to the startGame method in the main function.
+Make sure your output looks like my output (included below) for the pre-order , in-order, and post-order printing of the tree.
 
-2. (25 pts) Uncomment Out the startGame method in the main, and run the program.  Check to see if you have output similar to my game output below (Note: to do this properly, test with the commondict.txt file, which has about 2000 of the most common English words.  This isn’t as good as the scrabble dictionary, also included, but on the other hand the scrabble dictionary will take forever to read in, so for testing purposes, you probably want to stick with the commondict.txt file.
-Make sure you try a word with characters not in your list.  Make sure at least one word is in the dictionary, and one isn’t. Check to make sure the words are scored correctly and the final score is correct.
+2. (25 pts) Uncomment Out the startGame method in the main, and run the program.
+Check to see if you have output similar to my game output below
+(Note: to do this properly, test with the commondict.txt file, which has about 2000 of the most common English words.
+This isn’t as good as the scrabble dictionary, also included, but on the other hand the scrabble dictionary will take forever to read in, so for testing purposes, you probably want to stick with the commondict.txt file.
 
-3. (35 pts) In Main, go back to using testdict.txt and change the flag to true.  This should turn on the AVL Tree flag so that the tree created uses the AVL techniques to balance the tree. Recomment out the startGame method. Check to see that your ouput for pre, in, and postorder printouts look like mine, below.
+    1.  Make sure you try a word with characters not in your list.
+    Make sure at least one word is in the dictionary, and one isn’t.
+    Check to make sure the words are scored correctly and the final score is correct.
 
-4. (15 pts) Uncomment Out the startGame method in the main, and run the program.  Make sure everything still works.
-Make sure you try a word with characters not in your list.  Make sure at least one word is in the
+4. (35 pts) In Main, go back to using testdict.txt and change the flag to true.
+This should turn on the AVL Tree flag so that the tree created uses the AVL techniques to balance the tree.
+Recomment out the startGame method.
+Check to see that your ouput for pre, in, and postorder printouts look like mine, below.
+
+5. (15 pts) Uncomment Out the startGame method in the main, and run the program.
+Make sure everything still works.
+    1. Make sure you try a word with characters not in your list.
+    Make sure at least one word is in the in the dictionary, and one isn’t.
+    Check to make sure the words are scored correctly and the final score is correct.
 
 Extra Credit: 
 ---
-(5 pts) iInstead of signaling that the user is done entering possible words by entering a -1, use a timer so that the user is limited to entering words only with an allotted amount of time.
+(5 pts) Instead of signaling that the user is done entering possible words by entering a -1, use a timer so that the user is limited to entering words only with an allotted amount of time.
 
-(10 pts) Instead of just scoring words with 1 or -1, give each letter a value, so that words using more difficult letters will get higher scores than those using less difficult letters (this is scrabblish – you’d probably want to rank the actual words themselves at a difficulty level and then give valid words scores based on 
+(10 pts) Instead of just scoring words with 1 or -1, give each letter a value, so that words using more difficult letters will get higher scores than those using less difficult letters
+(this is scrabblish – you’d probably want to rank the actual words themselves at a difficulty level and then give valid words scores based on 
 
 --------------------------------------------------------------
 Output
@@ -103,56 +118,56 @@ Made root
 Adding: rest
 Inserting to right of babe
 
- Adding: wanton
+Adding: wanton
 Looking right of babe
 Inserting to right of rest
 
- Adding: shawn
+Adding: shawn
 Looking right of babe
 Looking right of rest
 Inserting to left of wanton
 
- Adding: dunce
+Adding: dunce
 Looking right of babe
 Inserting to left of rest
 
- Adding: fabric
+Adding: fabric
 Looking right of babe
 Looking left of rest
 Inserting to right of dunce
 
- Adding: deject
+Adding: deject
 Looking right of babe
 Looking left of rest
 Inserting to left of dunce
 
- Adding: chars
+Adding: chars
 Looking right of babe
 Looking left of rest
 Looking left of dunce
 Inserting to left of deject
 
- Adding: master
+Adding: master
 Looking right of babe
 Looking left of rest
 Looking right of dunce
 Inserting to right of fabric
 
- Adding: lose
+Adding: lose
 Looking right of babe
 Looking left of rest
 Looking right of dunce
 Looking right of fabric
 Inserting to left of master
 
- Adding: believe
+Adding: believe
 Looking right of babe
 Looking left of rest
 Looking left of dunce
 Looking left of deject
 Inserting to left of chars
 
- Adding: grange
+Adding: grange
 Looking right of babe
 Looking left of rest
 Looking right of dunce
@@ -160,7 +175,7 @@ Looking right of fabric
 Looking left of master
 Inserting to left of lose
 
- Adding: juice
+Adding: juice
 Looking right of babe
 Looking left of rest
 Looking right of dunce
@@ -169,20 +184,20 @@ Looking left of master
 Looking left of lose
 Inserting to right of grange
 
- Adding: super
+Adding: super
 Looking right of babe
 Looking right of rest
 Looking left of wanton
 Inserting to right of shawn
 
- Adding: sort
+Adding: sort
 Looking right of babe
 Looking right of rest
 Looking left of wanton
 Looking right of shawn
 Inserting to left of super
 
- Adding: hand
+Adding: hand
 Looking right of babe
 Looking left of rest
 Looking right of dunce
@@ -192,39 +207,39 @@ Looking left of lose
 Looking right of grange
 Inserting to left of juice
 
- Adding: frisbee
+Adding: frisbee
 Looking right of babe
 Looking left of rest
 Looking right of dunce
 Looking right of fabric
 Looking left of master
 Looking left of lose
- Inserting to left of grange
+Inserting to left of grange
 
- Adding: running
+Adding: running
 Looking right of babe
 Looking right of rest
 Looking left of wanton
 Inserting to left of shawn
 
- Adding: older
+Adding: older
 Looking right of babe
 Looking left of rest
 Looking right of dunce
 Looking right of fabric
 Inserting to right of master
 
- Adding: tint
+Adding: tint
 Looking right of babe
 Looking right of rest
 Looking left of wanton
 Looking right of shawn
 Inserting to right of super
 
- Adding: appease
+Adding: appease
 Inserting to left of babe
 
- Adding: might
+Adding: might
 Looking right of babe
 Looking left of rest
 Looking right of dunce
@@ -232,7 +247,7 @@ Looking right of fabric
 Looking right of master
 Inserting to left of older
 
- Printing in order: 
+Printing in order: 
 |1:appease| 
 |9:babe| 
 |1:believe| 
@@ -256,11 +271,11 @@ Inserting to left of older
 |1:tint| 
 |4:wanton| 
 
- Printing Preorder: 
+Printing Preorder: 
 |9:babe| 
 |1:appease| 
 |8:rest| 
- |7:dunce| 
+|7:dunce| 
 |3:deject| 
 |2:chars| 
 |1:believe| 
@@ -303,8 +318,10 @@ Printing Postorder:
 |4:wanton| 
 |8:rest| 
 |9:babe|
+```
 ---------------------------------------------------------------------
-(Pt 2) Whole thing with just BST:
+**(Pt 2) Whole thing with just BST:**
+```
 How many letters do you want?
 8
 Your letters are: 
@@ -320,7 +337,7 @@ joy
 sly
 toy
 blug
- -1
+-1
 fly:0, so:0, of:0, fool:0, soy:0, coy:0, joy:0, sly:0, toy:0, blug:0, 
 fly is okay  letterwise
 fly is in tree 
@@ -341,18 +358,20 @@ toy is invalid letterwise
 blug is invalid letterwise
 fly:1, so:1, of:1, fool:-1, soy:-1, coy:-1, joy:1, sly:-1, toy:-1, blug:-1, 
 Final Score is: -2
+```
 ---------------------------------------------------------------------
-(Pt 3) Testdict with AVLflag turned on  to true:
+**(Pt 3) Testdict with AVLflag turned on  to true:**
+```
 Adding: babe
 Made root
 Adding: rest
 Inserting to right of babe
 
- Adding: wanton
+Adding: wanton
 Looking right of babe
 Inserting to right of rest
 
- Rotating left around babe
+Rotating left around babe
 Height of node before: babe:3
 Height of right child before: rest:2
 height of babe is now 1height of rest is now 2
@@ -361,16 +380,16 @@ Adding: shawn
 Looking right of rest
 Inserting to left of wanton
 
- Adding: dunce
+Adding: dunce
 Looking left of rest
 Inserting to right of babe
 
- Adding: fabric
+Adding: fabric
 Looking left of rest
 Looking right of babe
 Inserting to right of dunce
 
- Rotating left around babe
+Rotating left around babe
 Height of node before: babe:3
 Height of right child before: dunce:2
 height of babe is now 1height of dunce is now 2
@@ -380,13 +399,13 @@ Looking left of rest
 Looking left of dunce
 Inserting to right of babe
 
- Adding: chars
+Adding: chars
 Looking left of rest
 Looking left of dunce
 Looking right of babe
 Inserting to left of deject
 
- Rotating left around babe
+Rotating left around babe
 right rotate first deject
 Height of node before: deject:2
 Height of right child before: chars:1
@@ -400,13 +419,13 @@ Looking left of rest
 Looking right of dunce
 Inserting to right of fabric
 
- Adding: lose
+Adding: lose
 Looking left of rest
 Looking right of dunce
 Looking right of fabric
 Inserting to left of master
 
- Rotating left around fabric
+Rotating left around fabric
 right rotate first master
 Height of node before: master:2
 Height of right child before: lose:1
@@ -421,7 +440,7 @@ Looking left of dunce
 Looking left of chars
 Inserting to right of babe
 
- Rotating right around rest
+Rotating right around rest
 Height of node before: rest:5
 Height of right child before: dunce:4
 height of rest is now 3height of dunce is now 4
@@ -432,16 +451,16 @@ Looking left of rest
 Looking left of lose
 Inserting to right of fabric
 
- Adding: juice
+Adding: juice
 Looking right of dunce
 Looking left of rest
 Looking left of lose
 Looking right of fabric
 Inserting to right of grange
 
- Rotating left around fabric
+Rotating left around fabric
 Height of node before: fabric:3
- Height of right child before: grange:2
+Height of right child before: grange:2
 height of fabric is now 1height of grange is now 2
 resetting lose's left to grange
 Adding: super
@@ -450,7 +469,7 @@ Looking right of rest
 Looking left of wanton
 Inserting to right of shawn
 
- Rotating right around wanton
+Rotating right around wanton
 Left rotate first shawn
 Height of node before: shawn:2
 Height of right child before: super:1
@@ -465,14 +484,14 @@ Looking right of rest
 Looking left of super
 Inserting to right of shawn
 
- Adding: hand
+Adding: hand
 Looking right of dunce
 Looking left of rest
 Looking left of lose
 Looking right of grange
 Inserting to left of juice
 
- Rotating right around lose
+Rotating right around lose
 Left rotate first grange
 Height of node before: grange:3
 Height of right child before: juice:2
@@ -488,7 +507,7 @@ Looking left of juice
 Looking left of grange
 Inserting to right of fabric
 
- Rotating left around dunce
+Rotating left around dunce
 right rotate first rest
 Height of node before: rest:5
 Height of right child before: juice:4
@@ -503,13 +522,13 @@ Looking right of rest
 Looking left of super
 Inserting to left of shawn
 
- Adding: older
+Adding: older
 Looking right of juice
 Looking left of rest
 Looking right of lose
 Inserting to right of master
 
- Rotating left around lose
+Rotating left around lose
 Height of node before: lose:3
 Height of right child before: master:2
 height of lose is now 1height of master is now 2
@@ -520,19 +539,19 @@ Looking right of rest
 Looking right of super
 Inserting to left of wanton
 
- Adding: appease
+Adding: appease
 Looking left of juice
 Looking left of dunce
 Looking left of chars
 Inserting to left of babe
 
- Adding: might
+Adding: might
 Looking right of juice
 Looking left of rest
 Looking right of master
 Inserting to left of older
 
- Printing in order: 
+Printing in order: 
 |1:appease| 
 |2:babe| 
 |1:believe| 
@@ -556,14 +575,14 @@ Inserting to left of older
 |1:tint| 
 |2:wanton| 
 
- Printing Preorder: 
+Printing Preorder: 
 |5:juice| 
 |4:dunce| 
 |3:chars| 
 |2:babe| 
 |1:appease| 
 |1:believe| 
- |1:deject| 
+|1:deject| 
 |3:grange| 
 |2:fabric| 
 |1:frisbee| 
@@ -580,7 +599,7 @@ Inserting to left of older
 |2:wanton| 
 |1:tint| 
 
- Printing Postorder: 
+Printing Postorder: 
 |1:appease| 
 |1:believe| 
 |2:babe| 
@@ -603,8 +622,12 @@ Inserting to left of older
 |3:super| 
 |4:rest| 
 |5:juice| 
+```
 ---------------------------------------------------------------------
-(Pt 4) Whole thing with AVL Tree (NOTE: If this works, it should look just like the output with the BST.  However, you still need to make sure it works):
+**(Pt 4) Whole thing with AVL Tree
+(NOTE: If this works, it should look just like the output with the BST.
+However, you still need to make sure it works):**
+```
 How many letters do you want?
 8
 Your letters are: 
@@ -622,7 +645,7 @@ sox
 glug
 -1
 so:0, mow:0, sow:0, or:0, show:0, mosh:0, ohm:0, room:0, sox:0, glug:0, 
- so is okay  letterwise
+so is okay  letterwise
 so is in tree 
 mow is okay  letterwise
 mow NOT in tree 
