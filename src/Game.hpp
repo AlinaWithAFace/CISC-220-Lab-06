@@ -15,6 +15,7 @@
 #include <string>
 
 class Game {
+	friend class NodeL;
 	bool AVL;
 	AVLTree *dict;
 	int numletters;
@@ -27,7 +28,7 @@ class Game {
 public:
 	Game();
 
-	Game(string infile, bool AVLflag);
+	Game(string filePath, bool AVLflag);
 
 	void startGame();
 

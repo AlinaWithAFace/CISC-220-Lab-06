@@ -21,9 +21,9 @@ Game::Game() {
 	Game("dict.txt", false);
 }
 
-Game::Game(string filen, bool AVLflag) {
+Game::Game(string filePath, bool AVLflag) {
 	AVL = AVLflag;
-	dictfile = filen;
+	dictfile = filePath;
 	readTreeFromFile();
 	cout << "Printing in order: " << endl;
 	dict->printIO(dict->root);
@@ -138,7 +138,10 @@ void Game::readTreeFromFile() {
 		//dict->insert(word);
 		//}
 	}
-	return;
+}
+
+void Game::getScore() {
+//TODO
 }
 
 //=

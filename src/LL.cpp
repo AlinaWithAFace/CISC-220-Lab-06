@@ -20,6 +20,7 @@ LL::LL() {
 	last = NULL;
 	size = 0;
 	wordcount = 0;
+	score = 0;
 }
 
 /**

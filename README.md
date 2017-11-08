@@ -5,18 +5,25 @@ Lab 6: Binary Search Trees/AVL Trees
 
 (100 pts, due Nov 15 at midnight)
 
-**The game**: WordHub
+**The game**:
+WordHub
 
-**The idea**: A player gets a set of letters of size x (you pick) and then generates as many words as possible with those letters only.  The words are then checked for validity or not, and a player gets a final score that is the total number of words that used only the letters and occur in a dictionary versus the words that either use invalid letters or don’t occur in the dictionary.
+**The idea**:
+A player gets a set of letters of size x (you pick) and then generates as many words as possible with those letters only.
+The words are then checked for validity or not, and a player gets a final score that is the total number of words that used only the letters and occur in a dictionary versus the words that either use invalid letters or don’t occur in the dictionary.
 
-**The crux of this**: Reading in a dictionary file into either a Binary Search Tree or a BST modified using AVL (an AVL tree). For this, I used a flag to set whether, as words are being inserted into the binary search tree the tree is also balanced and updated using AVL techniques or not.
+**The crux of this**:
+Reading in a dictionary file into either a Binary Search Tree or a BST modified using AVL (an AVL tree).
+For this, I used a flag to set whether, as words are being inserted into the binary search tree the tree is also balanced and updated using AVL techniques or not.
 
-Things I didn't worry about: caps versus small letters.
+Things I didn't worry about:
+Caps versus small letters.
 
 Code you’ll be writing: 
 ---
 
-For this lab you will be creating the header file and the definition file for both an AVL tree and a simple linked list.  With minor adjustments (and one more method) the linked list you wrote for the last lab should work fine, so the focus of this lab will be the AVL Tree header and definition files. 
+For this lab you will be creating the header file and the definition file for both an AVL tree and a simple linked list.
+With minor adjustments (and one more method) the linked list you wrote for the last lab should work fine, so the focus of this lab will be the AVL Tree header and definition files. 
 Note that an AVL tree is a binary search tree, with the caveat that it has been adjusted to be balanced as nodes are inserted.  So make sure your AVL tree class has a flag that is true when you want to do the necessary check balances and rotations to create an AVL balanced binary search tree, and false when you just want a regular balanced binary search tree. You can set the flag in the main function, when creating a Game object.
 
 Binary Search Tree/AVL Tree Portion:

@@ -15,7 +15,6 @@ using namespace std;
 
 class NodeL {
 	friend class LL;
-
 	friend class Game;
 
 	NodeL *next;

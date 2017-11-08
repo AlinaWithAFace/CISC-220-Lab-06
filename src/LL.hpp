@@ -17,6 +17,7 @@
 using namespace std;
 
 class LL {
+	friend class Game;
 	friend class Document;
 
 	NodeL *first;
