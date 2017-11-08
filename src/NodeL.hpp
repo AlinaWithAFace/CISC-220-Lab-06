@@ -18,9 +18,12 @@ class NodeL {
 
 	friend class Game;
 
+	NodeL *next;
+	NodeL *prev;
 	string word;
 	int wscore;
-	NodeL *next;
+	int count; // Depreciated
+
 public:
 	NodeL(string w);
 

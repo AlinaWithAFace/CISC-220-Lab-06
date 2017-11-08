@@ -27,7 +27,7 @@ LL::LL() {
  * Destructor - goes through whole list and deletes
  */
 LL::~LL() {
-	Node *aNode;
+	NodeL *aNode;
 	while (first != NULL) {
 		aNode = first->next;
 		first->next = NULL;
@@ -43,8 +43,8 @@ LL::~LL() {
  * (5 pts)
  * For each node, prints word, and count
  */
-void LL::printLL() {
-	Node *aNode = first;
+void LL::printList() {
+	NodeL *aNode = first;
 	int printWordCount = 0;
 
 	std::cout << std::fixed;
@@ -76,7 +76,7 @@ void LL::printLL() {
  */
 void LL::addFirst(string x) {
 	if (first == NULL) {
-		first = new Node(x);
+		first = new NodeL(x);
 		first->next = NULL;
 		last = first;
 		size++;
@@ -89,7 +89,7 @@ void LL::addFirst(string x) {
  */
 void LL::addAtFirst(string x) {
 	if (first != NULL) {
-		Node *newNode = new Node(x);
+		NodeL *newNode = new NodeL(x);
 		newNode->next = first;
 		first = newNode;
 		size++;
@@ -101,7 +101,7 @@ void LL::addAtFirst(string x) {
  * Adds node to end of list
  */
 void LL::push(string x) {
-	Node *newNode = new Node(x);
+	NodeL *newNode = new NodeL(x);
 	last->next = newNode;
 	last = newNode;
 	size++;
@@ -112,8 +112,8 @@ void LL::push(string x) {
  * This method finds and returns the node right before where you should insert the new word into the list.
  * If the word is already in the list, it increases that word's count and returns NULL.
  */
-Node *LL::findInsert(string x) {
-	Node *momNode = first; // Find the node address that x could be inserted after this node
+NodeL *LL::findInsert(string x) {
+	NodeL *momNode = first; // Find the node address that x could be inserted after this node
 	while (momNode != NULL) {
 		if (x == momNode->word) { // If the word is already in the list, increase that word's count and return NULL
 			//cout << x << " is already in list, increasing count." << endl;
@@ -156,8 +156,8 @@ void LL::insertUnique(string x) {
 		addAtFirst(x);
 		wordcount++;
 	} else {
-		Node *momNode = findInsert(x);
-		Node *newNode = new Node(x);
+		NodeL *momNode = findInsert(x);
+		NodeL *newNode = new NodeL(x);
 		if (momNode == NULL) {
 			// amazing, it's already in the list, we don't need to do anything from here
 			wordcount++;
@@ -165,7 +165,7 @@ void LL::insertUnique(string x) {
 			push(x);
 			wordcount++;
 		} else {
-			Node *babyNode = momNode->next;
+			NodeL *babyNode = momNode->next;
 			momNode->next = newNode;
 			newNode->next = babyNode;
 			size++;
@@ -179,7 +179,7 @@ void LL::insertUnique(string x) {
  * Traverses list and normalizes counts by dividing by the total wordcount
  */
 void LL::normalizeCounts() {
-	Node *aNode = first;
+	NodeL *aNode = first;
 	while (aNode != NULL) {
 		aNode->count = (aNode->count / wordcount);
 		aNode = aNode->next;
@@ -191,7 +191,7 @@ void LL::normalizeCounts() {
  * Removes the very first node in the list
  */
 string LL::remFirst() {
-	Node *aNode = first;
+	NodeL *aNode = first;
 	string aString = aNode->word;
 
 	first = aNode->next;
@@ -209,7 +209,7 @@ string LL::remFirst() {
  */
 string LL::pop() {
 	string aString;
-	Node *beforeLast = first;
+	NodeL *beforeLast = first;
 	for (int i = 0; i < size - 2; i++) {
 		beforeLast = beforeLast->next; // Iterate through to find the node right before the last node
 	}
@@ -229,10 +229,10 @@ string LL::pop() {
  * (8 pts)
  * Removes the node after n in the list
  */
-string LL::remNext(Node *n) {
+string LL::remNext(NodeL *n) {
 	string aString = n->next->word;
 
-	Node *aNode = n->next;
+	NodeL *aNode = n->next;
 	n->next = aNode->next;
 	aNode->next = NULL;
 
@@ -247,7 +247,7 @@ string LL::remNext(Node *n) {
  * This method should call the above remNext method();
  */
 void LL::eliminateLowWords() {
-	Node *aNode = first;
+	NodeL *aNode = first;
 
 	int threshold = 4;
 
@@ -274,5 +274,14 @@ void LL::eliminateLowWords() {
 		}
 
 	}
+}
+
+/**
+ * This is the new method – each word already has a score.
+ * This method just traverses the linked list from the first to the last node and keeps a running total of the wscore of each node.
+ * Then the score field is set to that total.
+ */
+void LL::getScore() {
+
 }
 

@@ -9,7 +9,7 @@
 #define LLSE_HPP_
 
 
-#include "Node.hpp"
+#include "NodeL.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <string>
@@ -19,17 +19,19 @@ using namespace std;
 class LL {
 	friend class Document;
 
-	Node *first;
-	Node *last;
+	NodeL *first;
+	NodeL *last;
 	int size;
-	int wordcount;
+	int wordcount; // Depreciated
 
 public:
+	int score;   // This field is for the game’s score, and will be set using a getScore method, below.  It should be initialized in the constructor to 0.
+
 	LL();
 
 	~LL();
 
-	void printLL();
+	void printList();
 
 	void addFirst(string x);
 
@@ -37,7 +39,7 @@ public:
 
 	void push(string x);
 
-	Node *findInsert(string x);
+	NodeL *findInsert(string x);
 
 	void insertUnique(string x);
 
@@ -47,9 +49,11 @@ public:
 
 	string pop();
 
-	string remNext(Node *n);
+	string remNext(NodeL *n);
 
 	void eliminateLowWords();
+
+	void getScore();
 };
 
 
