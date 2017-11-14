@@ -11,21 +11,13 @@
 
 using namespace std;
 
-NodeLinkedList::NodeLinkedList(string s) {
-	next = NULL;
-	prev = NULL;
+NodeL::NodeL(string s) {
 	word = s;
+	next = NULL;
 	wscore = 0;
-	count = 0;
 }
 
-NodeLinkedList::~NodeLinkedList() {
+NodeL::~NodeL() {
 	cout << "Deleting " << word << endl;
-	if (next != NULL) {
-		cout << "Next not null: Memory leak?" << endl;
-	}
-	if (prev != NULL) {
-		cout << "Prev not null: Memory leak?" << endl;
-	}
 }
 

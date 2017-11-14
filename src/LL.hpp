@@ -1,61 +1,29 @@
-/*
- * LLSE.hpp
- *
- *  Created on: Oct 16, 2017
- *      Author: Debra
- */
+//
+// Created by Alina on 2017-11-14.
+//
 
-#ifndef LLSE_HPP_
-#define LLSE_HPP_
+#ifndef CISC_220_LAB_06_LL_H
+#define CISC_220_LAB_06_LL_H
 
 
-#include "NodeL.hpp"
-#include <iostream>
-#include <stdlib.h>
 #include <string>
+#include "NodeL.hpp"
 
 using namespace std;
 
 class LL {
-	friend class Game;
-	friend class Document;
-
-	NodeLinkedList *first;
-	NodeLinkedList *last;
-	int size;
-	int wordcount; // Depreciated
 
 public:
-	int score;   // This field is for the game’s gameScore, and will be set using a getScore method, below.  It should be initialized in the constructor to 0.
-
-	LL();
-
-	~LL();
-
 	void printList();
 
-	void addFirst(string x);
-
-	void addAtFirst(string x);
-
-	void push(string x);
-
-	NodeLinkedList *findInsert(string x);
-
-	void insertUnique(string x);
-
-	void normalizeCounts();
-
-	string remFirst();
-
-	string pop();
-
-	string remNext(NodeLinkedList *n);
-
-	void eliminateLowWords();
-
 	void getScore();
+
+	int score;
+
+	void push(string basic_string);
+
+	NodeL *first;
 };
 
 
-#endif /* LLSE_HPP_ */
+#endif //CISC_220_LAB_06_LL_H

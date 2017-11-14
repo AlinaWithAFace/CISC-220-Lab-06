@@ -10,25 +10,22 @@
 
 #include <string>
 #include <iostream>
-
 using namespace std;
 
-class NodeLinkedList {
+class NodeL {
 	friend class LL;
 	friend class Game;
-
-	NodeLinkedList *next;
-	NodeLinkedList *prev;
 	string word;
 	int wscore;
-	int count; // Depreciated
-
+	NodeL *next;
 public:
-	NodeLinkedList(string w);
+	NodeL(string w);
 
-	~NodeLinkedList();
+	~NodeL();
 
 };
+
+
 
 
 #endif /* SNodeL_HPP_ */

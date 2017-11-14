@@ -6,14 +6,9 @@
  */
 
 
-////#include "AvlTree.hpp"
-//#include <iostream>
-//#include <stdlib.h>
-//#include <time.h>
-//#include <fstream>
-//#include "Game.hpp"
-
+//#include "AVLTree.hpp"
 #include <iostream>
+#include <stdlib.h>
 #include <time.h>
 #include <fstream>
 #include "Game.hpp"
@@ -24,22 +19,8 @@ int main() {
 
 	srand(time(NULL));
 
-	Game *game;
-	string dictionaryPath = "resources/commondict.txt";
-
-	ifstream file(dictionaryPath.c_str());
-	if (file.is_open()) {
-		cout << "Reading succeeded: " << dictionaryPath << endl;
-	} else {
-		cout << "Reading failed: " << dictionaryPath << endl;
-	}
-
-	game = new Game(dictionaryPath, true);
-	//game->startGame();
-
-
-
-
+	Game *game = new Game("C:\\Users\\Alina\\Git\\CISC-220\\CISC-220-Lab-06\\resources\\commondict.txt", true);
+	game->startGame();
 
 	return 0;
 }

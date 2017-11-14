@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include "AvlTree.hpp"
+#include "AVLTree.hpp"
 #include "Game.hpp"
 #include "LL.hpp"
 #include "NodeL.hpp"
@@ -18,49 +18,45 @@
 using namespace std;
 
 Game::Game() {
-	Game("dictionary.txt", false);
+	Game("dict.txt", false);
 }
 
-Game::Game(string filePath, bool avlFlag) {
-	gameAvlFlag = avlFlag;
-	dictionaryFilePath = filePath;
-
+Game::Game(string filen, bool AVLflag) {
+	AVL = AVLflag;
+	dictfile = filen;
 	readTreeFromFile();
-
 	cout << "Printing in order: " << endl;
-	dictionary->printIO(dictionary->root);
+	dict->printIO(dict->root);
 	cout << endl << "Printing Preorder: " << endl;
-	dictionary->printPre(dictionary->root);
+	dict->printPre(dict->root);
 	cout << endl << "Printing Postorder: " << endl;
-	dictionary->printPost(dictionary->root);
-	numLetters = 0;
-	gameScore = 0;
-	//numRight = 0;
-	//totalWords = 0;
-	// TODO: wordList = new LL();
-
+	dict->printPost(dict->root);
+	numletters = 0;
+	//numright = 0;
+	//totalwords = 0;
+//	wordlist = new LL();
 }
 
 void Game::startGame() {
 	cout << "How many letters do you want?" << endl;
-	cin >> numLetters;
-	currentLetters = getLetters(numLetters);
+	cin >> numletters;
+	currletters = getLetters(numletters);
 	cout << "Your letters are: " << endl;
-	for (int i = 0; i < numLetters; i++) {
-		cout << currentLetters[i] << " ";
+	for (int i = 0; i < numletters; i++) {
+		cout << currletters[i] << " ";
 	}
 	cout << endl;
 	cout << "Start generating words: " << endl;
 	getWords();
-	wordList.printList();
+	wordlist.printList();
 	checkWordsForScore();
-	wordList.printList();
-	wordList.getScore();
-	cout << "Final Score is: " << wordList.score << endl;
+	wordlist.printList();
+	wordlist.getScore();
+	cout << "Final Score is: " << wordlist.score << endl;
 
-	//int gameScore = numRight * 3 - (totalWords-numRight) * 6;
-	//cout << "Number of valid words: " << numRight << " Invalid words: " << (totalWords = numRight) << endl;
-	//cout << "Final Score is: "  << gameScore << endl;
+	//int score = numright * 3 - (totalwords-numright) * 6;
+	//cout << "Number of valid words: " << numright << " Invalid words: " << (totalwords = numright) << endl;
+	//cout << "Final Score is: "  << score << endl;
 }
 
 
@@ -68,7 +64,7 @@ void Game::getWords() {
 	string s;
 	cin >> s;
 	while (s != "-1") {
-		wordList.push(s);
+		wordlist.push(s);
 		cin >> s;
 		//cout << endl;
 	}
@@ -90,18 +86,17 @@ char *Game::getLetters(int x) {
 	}
 	return curr;
 }
-
 bool Game::checkWLetters(string s) {
-	char tempchar[numLetters];
-	for (int i = 0; i < numLetters; i++) {
-		tempchar[i] = currentLetters[i];
+	char tempchar[numletters];
+	for (int i = 0; i < numletters; i++) {
+		tempchar[i] = currletters[i];
 	}
 	for (int i = 0; i < s.size(); i++) {
 		int j = 0;
-		while ((j < numLetters) && (tolower(s[i]) != tempchar[j])) {
+		while ((j < numletters) && (tolower(s[i]) != tempchar[j])) {
 			j++;
 		}
-		if (j == numLetters) {
+		if (j == numletters) {
 			return false;
 		}
 		tempchar[j] = '1';
@@ -110,12 +105,12 @@ bool Game::checkWLetters(string s) {
 }
 
 void Game::checkWordsForScore() {
-	NodeLinkedList *tmp = wordList.first;
+	NodeL *tmp = wordlist.first;
 	while (tmp != NULL) {
 		if (checkWLetters(tmp->word)) {
 			cout << tmp->word << " is okay  letterwise" << endl;
 
-			if (dictionary->findWord(tmp->word, dictionary->root)) {
+			if (dict->findWord(tmp->word, dict->root)) {
 				cout << tmp->word << " is in tree " << endl;
 				tmp->wscore = 1;
 			} else {
@@ -131,23 +126,26 @@ void Game::checkWordsForScore() {
 }
 
 void Game::readTreeFromFile() {
-	dictionary = new AvlTree(gameAvlFlag);
-	ifstream file(dictionaryFilePath.c_str());
-	cout << (file.is_open() ? "Reading succeeded: " : "Reading failed: ") << dictionaryFilePath << endl;
+	dict = new AVLTree(AVL);
+	ifstream file(dictfile.c_str());
+	if (!file.is_open()) {
+		cout << "Couldn't read " << dictfile << ", aborting..." << endl;
+		abort();
+	}
+
 	string word;
 	while (!file.eof()) {
 		file >> word;
 		//if (!file.eof()) {
 		cout << "Adding: " << word << endl;
-		dictionary->addNode(word, dictionary->root);
-		//dictionary->insert(word);
+		dict->addNode(word, dict->root);
+		//dict->insert(word);
 		//}
 	}
+	return;
 }
 
-void Game::getScore() {
-//TODO
-}
+//=
 
 
 

@@ -9,26 +9,26 @@
 #define NodeT_HPP_
 
 #include <string>
-
 using namespace std;
 
-class NodeTree {
-	friend class AvlTree;
+class NodeT {
+	friend class AVLTree;
 
 public:
 	string word;
 	int height;
-	NodeTree *left;
-	NodeTree *right;
-	NodeTree *parent;
+	NodeT *left;
+	NodeT *right;
+	NodeT *parent;
 
 
-	NodeTree(string aWord);
+	NodeT(string x);
 
-	~NodeTree();
+	~NodeT();
 
-	void printTreeNode();
+	void printTNode();
 };
+
 
 
 #endif /* NodeT_HPP_ */

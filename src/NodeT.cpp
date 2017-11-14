@@ -12,21 +12,21 @@
 
 using namespace std;
 
-NodeTree::NodeTree(string aWord) {
-	word = aWord;
+NodeT::NodeT(string x) {
+	word = x;
 	left = NULL;
 	right = NULL;
 	parent = NULL;
 	height = 0;
 }
 
-NodeTree::~NodeTree() {
+NodeT::~NodeT() {
 	if ((left != NULL) || (right != NULL)) {
 		cout << "deleting may leave dangling Tree Nodes" << endl;
 	}
 }
 
-void NodeTree::printTreeNode() {
+void NodeT::printTNode() {
 	cout << "|" << height << ":" << word << "| " << endl;
 }
 
