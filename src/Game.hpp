@@ -13,8 +13,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class Game {
 	bool AVL;
 	AVLTree *dict;
@@ -27,12 +25,10 @@ class Game {
 	string dictfile;
 public:
 	Game();
-
 	Game(string infile, bool AVLflag);
 	void startGame();
 	void getScore();
-
-	void readTreeFromFile();
+	void readTreeFromFile ();
 	char *getLetters(int x);
 	void getWords();
 	bool checkWLetters(string s);

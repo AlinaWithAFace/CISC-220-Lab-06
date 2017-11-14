@@ -15,7 +15,9 @@ set(SOURCE_FILES
         src/LL.hpp
         src/AVLTree.cpp
         src/AVLTree.hpp
-        )
+        commondict.txt
+        scrabble.txt
+        testdict.txt)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 

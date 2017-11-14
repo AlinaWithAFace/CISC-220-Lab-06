@@ -20,8 +20,8 @@ class NodeL {
 	NodeL *next;
 public:
 	NodeL(string w);
-
 	~NodeL();
+
 };
 
 

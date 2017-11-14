@@ -19,7 +19,7 @@ int main() {
 
 	srand(time(NULL));
 
-	Game *game = new Game("C:\\Users\\Alina\\Git\\CISC-220\\CISC-220-Lab-06\\resources\\commondict.txt", true);
+	Game *game = new Game("commondict.txt", true);
 	game->startGame();
 
 	return 0;

@@ -27,7 +27,7 @@ NodeT::~NodeT() {
 }
 
 void NodeT::printTNode() {
-	cout << "|" << height << ":" << word << "| " << endl;
+	cout << "|"<<height<<":"<<word << "| " << endl;
 }
 
 

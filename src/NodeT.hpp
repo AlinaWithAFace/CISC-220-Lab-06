@@ -23,9 +23,7 @@ public:
 
 
 	NodeT(string x);
-
 	~NodeT();
-
 	void printTNode();
 };
 

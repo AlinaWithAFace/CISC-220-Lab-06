@@ -16,7 +16,6 @@ NodeL::NodeL(string s) {
 	next = NULL;
 	wscore = 0;
 }
-
 NodeL::~NodeL() {
 	cout << "Deleting " << word << endl;
 }
