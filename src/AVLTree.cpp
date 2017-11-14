@@ -1,29 +1,45 @@
 //
-// Created by Alina on 2017-11-14.
+// Created by Alina on 2017-11-04.
 //
 
 #include "AVLTree.hpp"
 
-AVLTree::AVLTree(bool i) {
-
+AVLTree::AVLTree(bool flag) {
+	root = new NodeT("starting string");
+	avlFlag = flag;
+	//TODO
 }
 
-void AVLTree::printIO(int i) {
-
-}
-
-void AVLTree::printPre(int i) {
-
-}
-
-void AVLTree::printPost(int i) {
-
-}
-
-void AVLTree::addNode(std::basic_string<char> basic_string, int i) {
-
-}
-
-bool AVLTree::findWord(string basic_string, int param) {
+bool AVLTree::findWord(string s, NodeT *n) {
+	//TODO
 	return false;
+}
+
+void AVLTree::addNode(string s, NodeT *r) {
+	//TODO
+
+}
+
+void AVLTree::printIO(NodeT *root) {
+	//TODO
+
+}
+
+void AVLTree::printPre(NodeT *root) {
+	//TODO
+
+}
+
+void AVLTree::printPost(NodeT *root) {
+	//TODO
+
+}
+
+void AVLTree::adjustHeights(NodeT *n) {
+//TODO
+}
+
+int AVLTree::getMax(NodeT *n) {
+	//TODO
+	return 0;
 }

@@ -22,7 +22,6 @@ public:
 	NodeL(string w);
 
 	~NodeL();
-
 };
 
 
