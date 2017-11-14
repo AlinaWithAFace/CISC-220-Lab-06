@@ -74,7 +74,7 @@ int gameScore;   // This field is for the game’s gameScore, and will be set us
 ```
 And your methods you’ll need for this are:
 ```
-LinkedList();
+LL();
 void push(string s);
 void addFirst(string s);
 void printList();

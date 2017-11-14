@@ -16,7 +16,7 @@
 
 using namespace std;
 
-class LinkedList {
+class LL {
 	friend class Game;
 	friend class Document;
 
@@ -28,9 +28,9 @@ class LinkedList {
 public:
 	int score;   // This field is for the game’s gameScore, and will be set using a getScore method, below.  It should be initialized in the constructor to 0.
 
-	LinkedList();
+	LL();
 
-	~LinkedList();
+	~LL();
 
 	void printList();
 

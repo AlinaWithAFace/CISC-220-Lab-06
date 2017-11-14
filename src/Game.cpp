@@ -37,7 +37,7 @@ Game::Game(string filePath, bool avlFlag) {
 	gameScore = 0;
 	//numRight = 0;
 	//totalWords = 0;
-	wordList = new LinkedList();
+	// TODO: wordList = new LL();
 
 }
 

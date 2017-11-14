@@ -24,7 +24,7 @@ class Game {
 	//int numRight;
 	//int totalWords;
 	int gameScore;
-	LinkedList wordList;
+	LL wordList;
 	string dictionaryFilePath;
 public:
 	Game();

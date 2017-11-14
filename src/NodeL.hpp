@@ -14,7 +14,7 @@
 using namespace std;
 
 class NodeLinkedList {
-	friend class LinkedList;
+	friend class LL;
 	friend class Game;
 
 	NodeLinkedList *next;
