@@ -16,21 +16,21 @@
 
 using namespace std;
 
-class LL {
+class LinkedList {
 	friend class Game;
 	friend class Document;
 
-	NodeL *first;
-	NodeL *last;
+	NodeLinkedList *first;
+	NodeLinkedList *last;
 	int size;
 	int wordcount; // Depreciated
 
 public:
-	int score;   // This field is for the game’s score, and will be set using a getScore method, below.  It should be initialized in the constructor to 0.
+	int score;   // This field is for the game’s gameScore, and will be set using a getScore method, below.  It should be initialized in the constructor to 0.
 
-	LL();
+	LinkedList();
 
-	~LL();
+	~LinkedList();
 
 	void printList();
 
@@ -40,7 +40,7 @@ public:
 
 	void push(string x);
 
-	NodeL *findInsert(string x);
+	NodeLinkedList *findInsert(string x);
 
 	void insertUnique(string x);
 
@@ -50,7 +50,7 @@ public:
 
 	string pop();
 
-	string remNext(NodeL *n);
+	string remNext(NodeLinkedList *n);
 
 	void eliminateLowWords();
 

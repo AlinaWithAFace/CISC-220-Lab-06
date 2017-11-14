@@ -8,30 +8,30 @@
 
 #include "NodeT.hpp"
 
-class AVLTree {
+class AvlTree {
 
 public:
 
-	NodeT *root;  // holds the root of the bst
-	bool AVLflag; // flag for whether to adjust bst to be an avl tree
+	NodeTree *root;  // holds the root of the bst
+	bool avlFlag; // flag for whether to adjust bst to be an avl tree
 
 	/**
 	 * constructor
 	 * @param flag
 	 */
-	AVLTree(bool flag);
+	AvlTree(bool flag);
 
 	/**
 	 * Finds whether s is in the bst.
 	 * Returns true (if found) and false otherwise.
 	 * Note:  I called this with the root so that this method could be recursive.
-	 * It doesn’t have to be.
+	 * It doesn't have to be.
 	 * If you prefer to write this iteratively, you won’t need the NodeT pointer as a parameter.
 	 * @param s
 	 * @param n
 	 * @return
 	 */
-	bool findWord(string s, NodeT *n);
+	bool findWord(string s, NodeTree *n);
 
 	/**
 	 * Adding s to the tree.
@@ -40,13 +40,13 @@ public:
 	 * @param s
 	 * @param r
 	 */
-	void addNode(string s, NodeT *r);
+	void addNode(string s, NodeTree *r);
 
-	void printIO(NodeT *root);
+	void printIO(NodeTree *root);
 
-	void printPre(NodeT *root);
+	void printPre(NodeTree *root);
 
-	void printPost(NodeT *root);
+	void printPost(NodeTree *root);
 
 	/**
 	 * Starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.
@@ -54,14 +54,14 @@ public:
 	 * To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
 	 * @param n
 	 */
-	void adjustHeights(NodeT *n);
+	void adjustHeights(NodeTree *n);
 
 	/**
 	 * This method is a little helper method that determines the max height between the left child and the right child and returns that height.
 	 * @param n
 	 * @return
 	 */
-	int getMax(NodeT *n);
+	int getMax(NodeTree *n);
 
 };
 

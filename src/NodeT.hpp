@@ -12,22 +12,22 @@
 
 using namespace std;
 
-class NodeT {
-	friend class AVLTree;
+class NodeTree {
+	friend class AvlTree;
 
 public:
 	string word;
 	int height;
-	NodeT *left;
-	NodeT *right;
-	NodeT *parent;
+	NodeTree *left;
+	NodeTree *right;
+	NodeTree *parent;
 
 
-	NodeT(string x);
+	NodeTree(string aWord);
 
-	~NodeT();
+	~NodeTree();
 
-	void printTNode();
+	void printTreeNode();
 };
 
 

@@ -63889,7 +63889,7 @@ scorch
 scorched
 scorcher
 scorches
-score
+gameScore
 scored
 scorepad
 scorer

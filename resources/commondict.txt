@@ -1071,7 +1071,7 @@ threat
 responsibility
 smile
 attorney
-score
+gameScore
 account
 interesting
 break
@@ -1854,7 +1854,7 @@ host
 hall
 trust
 ocean
-score
+gameScore
 row
 producer
 afford

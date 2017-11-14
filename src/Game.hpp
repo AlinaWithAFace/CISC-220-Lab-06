@@ -8,27 +8,28 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
-#include "AVLTree.h"
+#include "AvlTree.hpp"
 #include "LL.hpp"
-#include "AVLTree.h"
+#include "AvlTree.hpp"
 #include <iostream>
 #include <string>
 
 class Game {
-	friend class NodeL;
-	bool AVL;
-	AVLTree *dict;
-	int numletters;
-	char *currletters;
-	//int numright;
-	//int totalwords;
-	int score;
-	LL wordlist;
-	string dictfile;
+	friend class NodeLinkedList;
+
+	bool gameAvlFlag;
+	AvlTree *dictionary;
+	int numLetters;
+	char *currentLetters;
+	//int numRight;
+	//int totalWords;
+	int gameScore;
+	LinkedList wordList;
+	string dictionaryFilePath;
 public:
 	Game();
 
-	Game(string filePath, bool AVLflag);
+	Game(string filePath, bool avlFlag);
 
 	void startGame();
 
@@ -43,6 +44,8 @@ public:
 	bool checkWLetters(string s);
 
 	void checkWordsForScore();
+
+
 };
 
 #endif /* GAME_HPP_ */

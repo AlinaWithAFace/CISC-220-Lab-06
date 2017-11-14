@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include "AVLTree.h"
+#include "AvlTree.hpp"
 #include "Game.hpp"
 #include "LL.hpp"
 #include "NodeL.hpp"
@@ -18,45 +18,49 @@
 using namespace std;
 
 Game::Game() {
-	Game("dict.txt", false);
+	Game("dictionary.txt", false);
 }
 
-Game::Game(string filePath, bool AVLflag) {
-	AVL = AVLflag;
-	dictfile = filePath;
+Game::Game(string filePath, bool avlFlag) {
+	gameAvlFlag = avlFlag;
+	dictionaryFilePath = filePath;
+
 	readTreeFromFile();
+
 	cout << "Printing in order: " << endl;
-	dict->printIO(dict->root);
+	dictionary->printIO(dictionary->root);
 	cout << endl << "Printing Preorder: " << endl;
-	dict->printPre(dict->root);
+	dictionary->printPre(dictionary->root);
 	cout << endl << "Printing Postorder: " << endl;
-	dict->printPost(dict->root);
-	numletters = 0;
-	//numright = 0;
-	//totalwords = 0;
-//	wordlist = new LL();
+	dictionary->printPost(dictionary->root);
+	numLetters = 0;
+	gameScore = 0;
+	//numRight = 0;
+	//totalWords = 0;
+	wordList = new LinkedList();
+
 }
 
 void Game::startGame() {
 	cout << "How many letters do you want?" << endl;
-	cin >> numletters;
-	currletters = getLetters(numletters);
+	cin >> numLetters;
+	currentLetters = getLetters(numLetters);
 	cout << "Your letters are: " << endl;
-	for (int i = 0; i < numletters; i++) {
-		cout << currletters[i] << " ";
+	for (int i = 0; i < numLetters; i++) {
+		cout << currentLetters[i] << " ";
 	}
 	cout << endl;
 	cout << "Start generating words: " << endl;
 	getWords();
-	wordlist.printList();
+	wordList.printList();
 	checkWordsForScore();
-	wordlist.printList();
-	wordlist.getScore();
-	cout << "Final Score is: " << wordlist.score << endl;
+	wordList.printList();
+	wordList.getScore();
+	cout << "Final Score is: " << wordList.score << endl;
 
-	//int score = numright * 3 - (totalwords-numright) * 6;
-	//cout << "Number of valid words: " << numright << " Invalid words: " << (totalwords = numright) << endl;
-	//cout << "Final Score is: "  << score << endl;
+	//int gameScore = numRight * 3 - (totalWords-numRight) * 6;
+	//cout << "Number of valid words: " << numRight << " Invalid words: " << (totalWords = numRight) << endl;
+	//cout << "Final Score is: "  << gameScore << endl;
 }
 
 
@@ -64,7 +68,7 @@ void Game::getWords() {
 	string s;
 	cin >> s;
 	while (s != "-1") {
-		wordlist.push(s);
+		wordList.push(s);
 		cin >> s;
 		//cout << endl;
 	}
@@ -88,16 +92,16 @@ char *Game::getLetters(int x) {
 }
 
 bool Game::checkWLetters(string s) {
-	char tempchar[numletters];
-	for (int i = 0; i < numletters; i++) {
-		tempchar[i] = currletters[i];
+	char tempchar[numLetters];
+	for (int i = 0; i < numLetters; i++) {
+		tempchar[i] = currentLetters[i];
 	}
 	for (int i = 0; i < s.size(); i++) {
 		int j = 0;
-		while ((j < numletters) && (tolower(s[i]) != tempchar[j])) {
+		while ((j < numLetters) && (tolower(s[i]) != tempchar[j])) {
 			j++;
 		}
-		if (j == numletters) {
+		if (j == numLetters) {
 			return false;
 		}
 		tempchar[j] = '1';
@@ -106,12 +110,12 @@ bool Game::checkWLetters(string s) {
 }
 
 void Game::checkWordsForScore() {
-	NodeL *tmp = wordlist.first;
+	NodeLinkedList *tmp = wordList.first;
 	while (tmp != NULL) {
 		if (checkWLetters(tmp->word)) {
 			cout << tmp->word << " is okay  letterwise" << endl;
 
-			if (dict->findWord(tmp->word, dict->root)) {
+			if (dictionary->findWord(tmp->word, dictionary->root)) {
 				cout << tmp->word << " is in tree " << endl;
 				tmp->wscore = 1;
 			} else {
@@ -127,15 +131,16 @@ void Game::checkWordsForScore() {
 }
 
 void Game::readTreeFromFile() {
-	dict = new AVLTree(AVL);
-	ifstream file(dictfile.c_str());
+	dictionary = new AvlTree(gameAvlFlag);
+	ifstream file(dictionaryFilePath.c_str());
+	cout << (file.is_open() ? "Reading succeeded: " : "Reading failed: ") << dictionaryFilePath << endl;
 	string word;
 	while (!file.eof()) {
 		file >> word;
 		//if (!file.eof()) {
 		cout << "Adding: " << word << endl;
-		dict->addNode(word, dict->root);
-		//dict->insert(word);
+		dictionary->addNode(word, dictionary->root);
+		//dictionary->insert(word);
 		//}
 	}
 }
@@ -143,8 +148,6 @@ void Game::readTreeFromFile() {
 void Game::getScore() {
 //TODO
 }
-
-//=
 
 
 

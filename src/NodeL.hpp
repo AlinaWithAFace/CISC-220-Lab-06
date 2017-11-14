@@ -13,20 +13,20 @@
 
 using namespace std;
 
-class NodeL {
-	friend class LL;
+class NodeLinkedList {
+	friend class LinkedList;
 	friend class Game;
 
-	NodeL *next;
-	NodeL *prev;
+	NodeLinkedList *next;
+	NodeLinkedList *prev;
 	string word;
 	int wscore;
 	int count; // Depreciated
 
 public:
-	NodeL(string w);
+	NodeLinkedList(string w);
 
-	~NodeL();
+	~NodeLinkedList();
 
 };
 
