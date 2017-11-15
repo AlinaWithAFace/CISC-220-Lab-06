@@ -18,9 +18,18 @@ AVLTree::AVLTree(bool flag) {
 }
 
 /**
+ * Calls findWord using the NodeT root
+ * @param s
+ * @return Whether or not the string is in the binary search tree.
+ */
+bool AVLTree::findWord(string s) {
+	findWord(s, root);
+}
+
+/**
  * Finds whether s is in the binary search tree.
  * Returns true (if found) and false otherwise.
- * Note:  I called this with the root so that this method could be recursive.
+ * Note: I called this with the root so that this method could be recursive.
  * It doesn't have to be.
  * If you prefer to write this iteratively, you won’t need the NodeT pointer as a parameter.
  * @param s
@@ -28,12 +37,31 @@ AVLTree::AVLTree(bool flag) {
  * @return
  */
 bool AVLTree::findWord(string s, NodeT *n) {
-	//TODO
-	return false;
+	//TODO: this is broken, it has an infinite loop somewhere, probably when it tries to call itself.
+	if (s == n->word) {
+		cout << s << " found" << endl;
+		return true;
+	} else if (s == n->left->word) {
+		cout << s << " found with parent " << n->word << endl;
+		return true;
+	} else if (s == n->right->word) {
+		cout << s << " found with parent " << n->word << endl;
+		return true;
+	} else if (findWord(s, n->left)) {
+		return true;
+	} else if (findWord(s, n->right)) {
+		return true;
+	} else {
+		cout << s << " not found" << endl;
+		return false;
+	}
 }
 
-
-void AVLTree::addNode(string newString){
+/**
+ * Calls addNode starting at the root NodeT
+ * @param newString
+ */
+void AVLTree::addNode(string newString) {
 	addNode(newString, root);
 }
 

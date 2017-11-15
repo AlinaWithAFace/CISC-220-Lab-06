@@ -34,6 +34,7 @@ public:
 	int getMax(NodeT *n);
 
 
+	bool findWord(string s);
 };
 
 
