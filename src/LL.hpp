@@ -37,7 +37,6 @@ public:
 	__attribute__((__deprecated__))
 	~LL();
 
-	__attribute__((__deprecated__))
 	void printList();
 
 	__attribute__((__deprecated__))

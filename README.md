@@ -32,31 +32,32 @@ Binary Search Tree/gameAvlFlag Tree Portion:
 You must write the header and the definitions for the binary search tree/gameAvlFlag tree.  
 
 For the BST/gameAvlFlag Tree, you should have at a minimum the following fields:
+
+<!-- language: lang-cpp -->
 ```
-NodeTree *root;  // holds the root of the bst
-bool avlFlag; // flag for whether to adjust bst to be an avl tree
+NodeT *root; // holds the root of the bst
+bool AVLflag; // flag for whether to adjust bst to be an avl tree
 ```
 And your methods should be
 
 **(Note: the below methods are necessary for both the Binary Search Tree and an gameAvlFlag Binary Search Tree, with no difference in how they’re written)**
 ```
-AvlTree(bool flag);  //constructor
-bool findWord (string s, NodeTree *n);  // finds whether s is in the bst.  Returns true (if found) and false otherwise.  Note:  I called this with the root so that this method could be recursive.  It doesn’t have to be.  If you prefer to write this iteratively, you won’t need the NodeTree pointer as a parameter.
-void addNode(string s,NodeTree *r);  Adding s to the tree.  Again, if done recursively, you’ll need a NodeTree address as a parameter.  If not, you won’t.
-void printIO(NodeTree *root);
-void printPre(NodeTree *root);
-void printPost(NodeTree *root);
+AVLTree(bool flag); //constructor bool findWord (string s, NodeT *n); // finds whether s is in the bst. Returns true (if found) and false otherwise. Note: I called this with the root so that this method could be recursive. It doesn’t have to be. If you prefer to write this iteratively, you won’t need the NodeT pointer as a parameter.
+void addNode(string s,NodeT *r); //Adding s to the tree. Again, if done recursively, you’ll need a NodeT address as a parameter. If not, you won’t.
+void printIO(NodeT *root);
+void printPre(NodeT *root);
+void printPost(NodeT *root);
 ```
 **Note: the below methods aren't necessary for a plain Binary Search Tree, but they adjust the heights of nodes, which makes debugging easier.  In addition, if the flag is set, adjustHeights would call the methods that determine whether the balance is okay, and if not, then it determines and calls the appropriate rotations**
 ```
-void adjustHeights(NodeTree *n); //starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.  If the AvlTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.  To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
-int getMax(NodeTree *n); // This method is a little helper method that determines the max height between the left child and the right child and returns that height.
+void adjustHeights(NodeT *n); // starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change. If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up. To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
+int getMax(NodeT *n); // This method is a little helper method that determines the max height between the left child and the right child and returns that height.
 ```
 Note: the below methods are just for gameAvlFlag Trees and are only called when the gameAvlFlag flag is set to true.
 ```
-NodeTree *rotateRight(NodeTree *n); // This method does an gameAvlFlag right rotation, returning the new parent
-NodeTree * rotateLeft(NodeTree *n); // This method does an gameAvlFlag left rotation, returning the new parent
-int getDiff(NodeTree *n);  // This method gets the difference between the left and the right child.
+NodeT *rotateRight(NodeT *n); // This method does an AVL right rotation, returning the new parent
+NodeT * rotateLeft(NodeT *n); // This method does an AVL left rotation, returning the new parent
+int getDiff(NodeT *n); // This method gets the difference between the left and the right child.
 ```
 For the AvlTree class, you can write other methods if you want.  Equally, the helper methods (getMax, getDiff) aren’t necessary, but I liked having them.
 
@@ -70,7 +71,7 @@ For the Linked List, you should have at a minimum the following fields:
 NodeL *first;
 NodeL *last;
 int size;
-int gameScore;   // This field is for the game’s gameScore, and will be set using a getScore method, below.  It should be initialized in the constructor to 0.
+int score; // This field is for the game’s score, and will be set using a getScore method, below. It should be initialized in the constructor to 0.
 ```
 And your methods you’ll need for this are:
 ```
@@ -78,7 +79,7 @@ LL();
 void push(string s);
 void addFirst(string s);
 void printList();
-void getScore();  // This is the new method – each word already has a gameScore.  This method just traverses the linked list from the first to the last node and keeps a running total of the wscore of each node.  Then the gameScore field is set to that total.
+void getScore(); // This is the new method – each word already has a score. This method just traverses the linked list from the first to the last node and keeps a running total of the wscore of each node. Then the score field is set to that total.
 ```
 
 To Test:
