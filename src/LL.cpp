@@ -283,6 +283,16 @@ void LL::eliminateLowWords() {
  * Then the score field is set to that total.
  */
 void LL::getScore() {
+	NodeL *aNode = first;
+	int cumulativeScore = 0;
+
+	while (aNode != NULL) {
+		cumulativeScore += aNode->wscore;
+		aNode = aNode->next;
+	}
+
+	score = cumulativeScore;
+	//TODO: Test pls
 
 }
 

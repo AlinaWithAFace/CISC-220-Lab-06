@@ -19,8 +19,21 @@ int main() {
 
 	srand(time(NULL));
 
-	Game *game = new Game("commondict.txt", true);
-	game->startGame();
+	AVLTree testBst(false);
+
+	testBst.addNode("5");
+
+	testBst.root->printTNode();
+
+	testBst.addNode("6");
+	testBst.addNode("4");
+	testBst.addNode("3");
+	testBst.addNode("9");
+	testBst.addNode("8");
+	testBst.addNode("8");
+
+	//Game *game = new Game("commondict.txt", true);
+	//game->startGame();
 
 	return 0;
 }

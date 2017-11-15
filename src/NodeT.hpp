@@ -9,6 +9,7 @@
 #define NodeT_HPP_
 
 #include <string>
+
 using namespace std;
 
 class NodeT {
@@ -23,10 +24,11 @@ public:
 
 
 	NodeT(string x);
+
 	~NodeT();
+
 	void printTNode();
 };
-
 
 
 #endif /* NodeT_HPP_ */
