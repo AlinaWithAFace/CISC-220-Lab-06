@@ -33,8 +33,7 @@ You must write the header and the definitions for the binary search tree/gameAvl
 
 For the BST/gameAvlFlag Tree, you should have at a minimum the following fields:
 
-<!-- language: lang-cpp -->
-```
+```cpp
 NodeT *root; // holds the root of the bst
 bool AVLflag; // flag for whether to adjust bst to be an avl tree
 ```
