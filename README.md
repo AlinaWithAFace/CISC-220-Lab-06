@@ -40,7 +40,7 @@ bool AVLflag; // flag for whether to adjust bst to be an avl tree
 And your methods should be
 
 **(Note: the below methods are necessary for both the Binary Search Tree and an gameAvlFlag Binary Search Tree, with no difference in how they’re written)**
-```
+```cpp
 AVLTree(bool flag); //constructor bool findWord (string s, NodeT *n); // finds whether s is in the bst. Returns true (if found) and false otherwise. Note: I called this with the root so that this method could be recursive. It doesn’t have to be. If you prefer to write this iteratively, you won’t need the NodeT pointer as a parameter.
 void addNode(string s,NodeT *r); //Adding s to the tree. Again, if done recursively, you’ll need a NodeT address as a parameter. If not, you won’t.
 void printIO(NodeT *root);
@@ -48,12 +48,12 @@ void printPre(NodeT *root);
 void printPost(NodeT *root);
 ```
 **Note: the below methods aren't necessary for a plain Binary Search Tree, but they adjust the heights of nodes, which makes debugging easier.  In addition, if the flag is set, adjustHeights would call the methods that determine whether the balance is okay, and if not, then it determines and calls the appropriate rotations**
-```
+```cpp
 void adjustHeights(NodeT *n); // starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change. If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up. To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
 int getMax(NodeT *n); // This method is a little helper method that determines the max height between the left child and the right child and returns that height.
 ```
 Note: the below methods are just for gameAvlFlag Trees and are only called when the gameAvlFlag flag is set to true.
-```
+```cpp
 NodeT *rotateRight(NodeT *n); // This method does an AVL right rotation, returning the new parent
 NodeT * rotateLeft(NodeT *n); // This method does an AVL left rotation, returning the new parent
 int getDiff(NodeT *n); // This method gets the difference between the left and the right child.
@@ -66,14 +66,14 @@ Linked List Portion:
 The linked list portion is for the words the user types in after s/he has received his/her letters.  Each word is added to the linked list.  These are the words that are checked with the dictionary  (which is in the form of a binary search tree) in the Game oject’s methods.  Your job is to write the header file and the definitions for a Linked List.  Because we’re just adding words to an empty linked list, the methods required are a subset of the methods you wrote for lab 5.  The only new field and method is the gameScore field/ getScore method.  The gameScore is initially set to 0.  The getScore method traverses the list and adds the gameScore of each word/Node in the list, then sets the gameScore to be that total.
 
 For the Linked List, you should have at a minimum the following fields:
-```
+```cpp
 NodeL *first;
 NodeL *last;
 int size;
 int score; // This field is for the game’s score, and will be set using a getScore method, below. It should be initialized in the constructor to 0.
 ```
 And your methods you’ll need for this are:
-```
+```cpp
 LL();
 void push(string s);
 void addFirst(string s);
@@ -103,6 +103,7 @@ Check to see that your ouput for pre, in, and postorder printouts look like mine
 
 5. (15 pts) Uncomment Out the startGame method in the main, and run the program.
 Make sure everything still works.
+
     1. Make sure you try a word with characters not in your list.
     Make sure at least one word is in the in the dictionary, and one isn’t.
     Check to make sure the words are scored correctly and the final gameScore is correct.
