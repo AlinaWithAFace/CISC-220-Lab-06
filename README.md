@@ -67,8 +67,8 @@ The linked list portion is for the words the user types in after s/he has receiv
 
 For the Linked List, you should have at a minimum the following fields:
 ```
-NodeLinkedList *first;
-NodeLinkedList *last;
+NodeL *first;
+NodeL *last;
 int size;
 int gameScore;   // This field is for the game’s gameScore, and will be set using a getScore method, below.  It should be initialized in the constructor to 0.
 ```

@@ -54,7 +54,7 @@ void LL::printList() {
 	while (aNode != NULL) {
 		cout << aNode->word;
 		cout << ":";
-		//cout << aNode->count << ", ";
+		cout << aNode->count << ", ";
 		aNode = aNode->next;
 
 		if (printWordCount > 4) {
@@ -117,19 +117,19 @@ NodeL *LL::findInsert(string x) {
 	NodeL *momNode = first; // Find the node address that x could be inserted after this node
 	while (momNode != NULL) {
 		if (x == momNode->word) { // If the word is already in the list, increase that word's count and return NULL
-			//cout << x << " is already in list, increasing count." << endl;
-			//momNode->count++;
+			cout << x << " is already in list, increasing count." << endl;
+			momNode->count++;
 			return NULL;
 
 		}
 		if (x > momNode->word) { // If the word is "greater than" the current word...
-			//cout << x << " is greater than " << momNode->word << endl;
+			cout << x << " is greater than " << momNode->word << endl;
 			if (momNode->next == NULL) {
-				//cout << momNode->word << " is last, inserting " << x << endl;
+				cout << momNode->word << " is last, inserting " << x << endl;
 				return momNode; // Or if it's the last one in the list, then it doesn't have anywhere else to go but the end.
 			}
 			if (x < momNode->next->word) {
-				//cout << x << " is less than " << momNode->next->word << endl;
+				cout << x << " is less than " << momNode->next->word << endl;
 				return momNode; // And "less than" the next word, we have our node! Probably.
 			}
 		}
@@ -182,7 +182,7 @@ void LL::insertUnique(string x) {
 void LL::normalizeCounts() {
 	NodeL *aNode = first;
 	while (aNode != NULL) {
-		//aNode->count = (aNode->count / wordcount);
+		aNode->count = (aNode->count / wordcount);
 		aNode = aNode->next;
 	}
 }
@@ -256,18 +256,16 @@ void LL::eliminateLowWords() {
 		bool atFirst = aNode == first;
 		bool nextExists = aNode->next != NULL;
 
-//		cout << "aNode: " << aNode->word << ", count: " << (int) ((aNode->count) * 10000) << ", ";
-//		if (nextExists) {
-//			cout << "next: " << aNode->next->word << ", count: " << (int) ((aNode->next->count) * 10000) << ", " << endl;
-//		}
+		cout << "aNode: " << aNode->word << ", count: " << (int) ((aNode->count) * 10000) << ", ";
+		if (nextExists) {
+			cout << "next: " << aNode->next->word << ", count: " << (int) ((aNode->next->count) * 10000) << ", " << endl;
+		}
 
-		if (atFirst && (threshold > (int) (//aNode->count *
-				1000))) {
+		if (atFirst && (threshold > (int) (aNode->count * 1000))) {
 			remFirst();
 			aNode = first;
 		} else {
-			if (nextExists && (threshold > (int) (//aNode->next->count *
-					1000))) {
+			if (nextExists && (threshold > (int) (aNode->next->count * 1000))) {
 				remNext(aNode);
 			} else if (nextExists) {
 				aNode = aNode->next;

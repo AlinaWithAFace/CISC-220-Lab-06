@@ -19,10 +19,10 @@ public:
 	 * constructor
 	 * @param flag
 	 */
-	AVLTree(bool flag);
+	explicit AVLTree(bool flag);
 
 	/**
-	 * Finds whether s is in the bst.
+	 * Finds whether s is in the binary search tree.
 	 * Returns true (if found) and false otherwise.
 	 * Note:  I called this with the root so that this method could be recursive.
 	 * It doesn't have to be.
@@ -51,7 +51,8 @@ public:
 	/**
 	 * Starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.
 	 * If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.
-	 * To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
+	 * To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1.
+	 * MAKE SURE you attach the newly rotated top node to the parent above it.
 	 * @param n
 	 */
 	void adjustHeights(NodeT *n);

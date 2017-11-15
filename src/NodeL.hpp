@@ -22,6 +22,8 @@ public:
 	NodeL(string w);
 	~NodeL();
 
+	__attribute__((__deprecated__))
+	int count;
 };
 
 
