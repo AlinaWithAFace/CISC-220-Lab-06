@@ -62,6 +62,8 @@ bool AVLTree::findWord(string s, NodeT *n) {
  * @param newString
  */
 void AVLTree::addNode(string newString) {
+	cout << endl;
+	cout << "Adding: " << newString << endl;
 	addNode(newString, root);
 }
 
@@ -73,52 +75,95 @@ void AVLTree::addNode(string newString) {
  * @param adoptiveParent The potential parent node for the newString.
  */
 void AVLTree::addNode(string newString, NodeT *adoptiveParent) {
-
-	if (avlFlag) {
-		//TODO: Uh, crap, it's an AVL tree. This could get... complicated.
-	} else {
-		// Great, it's a normal binary search tree, we don't have to do anything fancy.
-		// This is really complicated and nested though, there might be a better way to deal with this mass of nested ifelses.
-		if (root == NULL) {
-			root = new NodeT(newString);
-		} else if (newString == adoptiveParent->word) {
-			cout << newString << " is equal to " << adoptiveParent->word << endl;
-			return;
-		} else if (newString > adoptiveParent->word) {
-			cout << newString << " is greater than " << adoptiveParent->word << endl;
-			if (adoptiveParent->right == NULL) {
-				adoptiveParent->right = new NodeT(newString);
-				adoptiveParent->right->parent = adoptiveParent;
-				cout << "added " << newString << " with parent " << adoptiveParent->word << " on the right" << endl;
-			} else {
-				(addNode(newString, adoptiveParent->right));
-			}
-		} else if (newString < adoptiveParent->word) {
-			cout << newString << " is less than " << adoptiveParent->word << endl;
-			if (adoptiveParent->left == NULL) {
-				adoptiveParent->left = new NodeT(newString);
-				adoptiveParent->left->parent = adoptiveParent;
-				cout << "added " << newString << " with parent " << adoptiveParent->word << " on the left" << endl;
-			} else {
-				(addNode(newString, adoptiveParent->left));
-			}
+	//TODO: Uh, crap, it's a toggleable AVL tree. This could get... complicated.
+	// Great, it's a normal binary search tree, we don't have to do anything fancy.
+	// This is really complicated and nested though, there might be a better way to deal with this mass of nested ifelses.
+	// TODO: the heights are all wrong, fix it
+	if (root == NULL) {
+		root = new NodeT(newString);
+		cout << "Made root" << endl;
+	} else if (newString == adoptiveParent->word) {
+		//cout << newString << " is equal to " << adoptiveParent->word << endl;
+		return;
+	} else if (newString > adoptiveParent->word) {
+		//cout << newString << " is greater than " << adoptiveParent->word << endl;
+		if (adoptiveParent->right == NULL) {
+			cout << "Inserting to right of " << adoptiveParent->word << endl;
+			adoptiveParent->right = new NodeT(newString);
+			adoptiveParent->right->parent = adoptiveParent;
+		} else {
+			cout << "Looking right of " << adoptiveParent->word << endl;
+			(addNode(newString, adoptiveParent->right));
+		}
+	} else if (newString < adoptiveParent->word) {
+		//cout << newString << " is less than " << adoptiveParent->word << endl;
+		if (adoptiveParent->left == NULL) {
+			cout << "Inserting to left of " << adoptiveParent->word << endl;
+			adoptiveParent->left = new NodeT(newString);
+			adoptiveParent->left->parent = adoptiveParent;
+		} else {
+			cout << "Looking left of " << adoptiveParent->word << endl;
+			(addNode(newString, adoptiveParent->left));
 		}
 	}
 }
 
-void AVLTree::printIO(NodeT *root) {
-	//TODO
-
+/**
+ * Call printIO starting at the root
+ */
+void AVLTree::printIO() {
+	printIO(root);
+	cout << endl;
 }
 
-void AVLTree::printPre(NodeT *root) {
-	//TODO
 
+/**
+ * Print the tree in order recursively
+ * @param aNode
+ */
+void AVLTree::printIO(NodeT *aNode) {
+	if (aNode == NULL) { return; }
+	printIO(aNode->left);
+	aNode->printTNode();
+	printIO(aNode->right);
 }
 
-void AVLTree::printPost(NodeT *root) {
-	//TODO
+/**
+ * Call printPre starting at the root
+ */
+void AVLTree::printPre() {
+	printPre(root);
+	cout << endl;
+}
 
+/**
+ * Print the tree in pre order recursively
+ * @param aNode
+ */
+void AVLTree::printPre(NodeT *aNode) {
+	if (aNode == NULL) { return; }
+	aNode->printTNode();
+	printPre(aNode->left);
+	printPre(aNode->right);
+}
+
+/**
+ * Call printPost starting at the root
+ */
+void AVLTree::printPost() {
+	printPost(root);
+	cout << endl;
+}
+
+/**
+ * Print the tree in post order recursively
+ * @param aNode
+ */
+void AVLTree::printPost(NodeT *aNode) {
+	if (aNode == NULL) { return; }
+	printPost(aNode->left);
+	printPost(aNode->right);
+	aNode->printTNode();
 }
 
 

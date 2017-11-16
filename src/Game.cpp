@@ -138,8 +138,7 @@ void Game::readTreeFromFile () {
 	while (!file.eof()) {
 		file >> word;
 		//if (!file.eof()) {
-			cout << "Adding: " << word << endl;
-			dict->addNode(word,dict->root);
+			dict->addNode(word);
 			//dict->insert(word);
 		//}
 	}

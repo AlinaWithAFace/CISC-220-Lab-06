@@ -23,11 +23,11 @@ public:
 
 	void addNode(string newString, NodeT *adoptiveParent);
 
-	void printIO(NodeT *root);
+	void printIO(NodeT *aNode);
 
-	void printPre(NodeT *root);
+	void printPre(NodeT *aNode);
 
-	void printPost(NodeT *root);
+	void printPost(NodeT *aNode);
 
 	void adjustHeights(NodeT *n);
 
@@ -35,6 +35,12 @@ public:
 
 
 	bool findWord(string s);
+
+	void printIO();
+
+	void printPre();
+
+	void printPost();
 };
 
 

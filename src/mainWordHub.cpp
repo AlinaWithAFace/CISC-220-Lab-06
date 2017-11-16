@@ -23,7 +23,7 @@ int main() {
 
 	testBst.addNode("5");
 
-	testBst.root->printTNode();
+	//testBst.root->printTNode();
 
 	testBst.addNode("6");
 	testBst.addNode("4");
@@ -32,12 +32,16 @@ int main() {
 	testBst.addNode("8");
 	testBst.addNode("8");
 
-	cout << (testBst.findWord("4")) << endl;
+	//cout << (testBst.findWord("4")) << endl;
 	//cout << (testBst.findWord("7")) << endl;
 	//cout << (testBst.findWord("3")) << endl;
 
 	//Game *game = new Game("commondict.txt", true);
 	//game->startGame();
+
+	Game *testGame = new Game("testdict.txt", false);
+	testGame->startGame();
+
 
 	return 0;
 }
