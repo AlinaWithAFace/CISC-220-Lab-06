@@ -37,24 +37,20 @@ bool AVLTree::findWord(string s) {
  * @return
  */
 bool AVLTree::findWord(string s, NodeT *n) {
-	//TODO: this is broken, it has an infinite loop somewhere, probably when it tries to call itself.
-	if (s == n->word) {
-		cout << s << " found" << endl;
+	if (n == NULL) {
+		return false;
+	} else if (s == n->word) {
+		//cout << s << " found" << endl;
 		return true;
-	} else if (s == n->left->word) {
-		cout << s << " found with parent " << n->word << endl;
-		return true;
-	} else if (s == n->right->word) {
-		cout << s << " found with parent " << n->word << endl;
-		return true;
-	} else if (findWord(s, n->left)) {
-		return true;
-	} else if (findWord(s, n->right)) {
-		return true;
+	} else if (s < n->word) {
+		return findWord(s, n->left);
+	} else if (s > n->word) {
+		return findWord(s, n->right);
 	} else {
-		cout << s << " not found" << endl;
+		//cout << s << " not found" << endl;
 		return false;
 	}
+	//TODO: this is broken, it has (had?) an infinite loop somewhere, probably when it tries to call itself.
 }
 
 /**
