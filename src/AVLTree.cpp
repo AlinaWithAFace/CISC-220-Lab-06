@@ -170,8 +170,36 @@ void AVLTree::printPost(NodeT *aNode) {
  * MAKE SURE you attach the newly rotated top node to the parent above it.
  * @param n
  */
+//right rotation code taken from powerpoint
+NodeT *rightRotate(NodeT *n){
+	NodeT *x=n->left;
+	NodeT *tmp=n->right;
+	x->right=n;
+	n->left=tmp;
+	//update height
+	if (n->left->height>n->right->height){
+		n->height=n->left->height+1;
+	}
+	else{
+		n->height=n->right->height+1;
+	}
+	if (x->left->height>x->right->height){
+		x->height=x->left->height+1;
+	}
+	else{
+		x->height=x->right->height+1;
+	}
+	return x; // new root
+
+
+}
+
 void AVLTree::adjustHeights(NodeT *n) {
-//TODO
+//TODO build rotations
+	// adjust height of childs
+	//check balance
+	// if flag is true check balance
+	// adjust parent and grandparent node
 }
 
 
@@ -182,5 +210,9 @@ void AVLTree::adjustHeights(NodeT *n) {
  */
 int AVLTree::getMax(NodeT *n) {
 	//TODO
-	return 0;
+	if (n==NULL){
+		return -1;
+	}
+		return max(getMax(n->left),getMax(n->right))+1;
+
 }
