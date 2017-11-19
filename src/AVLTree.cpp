@@ -175,7 +175,7 @@ void AVLTree::printPost(NodeT *aNode) {
  * @param n
  */
 //right rotation code taken from powerpoint
-NodeT *rightRotate(NodeT *n) {
+NodeT *rotateRight(NodeT *n) {
 	NodeT *x = n->left;
 	NodeT *tmp = n->right;
 	x->right = n;
@@ -201,7 +201,7 @@ NodeT *rightRotate(NodeT *n) {
  * @param n
  * @return
  */
-NodeT *leftRotate(NodeT *n) {
+NodeT *rotateLeft(NodeT *n) {
 	NodeT *x = n->right;
 	NodeT *tmp = n->left;
 	x->left = n;
@@ -243,18 +243,10 @@ void AVLTree::adjustHeights(NodeT *n) {
 		if (childHeights == aNode->height) {
 			return; // If it's what we were going to change it to anyway, stop, because everything else above it should be okay.
 		} else {
-			// TODO: this doesn't quite work, it only updates it with the child's height if it's smaller
-			// so if something gets deleted this will break
-
-
-			cout << aNode->word << "'s current height: " << aNode->height << flush;
-			cout << ", trying to update height to: " << childHeights << endl;
+			//cout << aNode->word << "'s current height: " << aNode->height << flush;
+			//cout << ", trying to update height to: " << childHeights << endl;
 			int newHeight = childHeights;
 			newHeight = 1 + getMaxHeight(aNode);
-
-			cout << "Setting height to " << newHeight << endl;
-
-			aNode->height = newHeight;
 
 			if (avlFlag) {
 				// if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
@@ -264,6 +256,8 @@ void AVLTree::adjustHeights(NodeT *n) {
 				// if flag is true check balance
 				// adjust parent and grandparent node
 			}
+			//cout << "Setting height to " << newHeight << endl;
+			aNode->height = newHeight;
 		}
 		aNode = aNode->parent;
 	}
