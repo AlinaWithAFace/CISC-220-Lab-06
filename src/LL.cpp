@@ -54,7 +54,8 @@ void LL::printList() {
 	while (aNode != NULL) {
 		cout << aNode->word;
 		cout << ":";
-		cout << aNode->count << ", ";
+		cout << aNode->wscore << ", ";
+		//cout << aNode->count << ", ";
 		aNode = aNode->next;
 
 		if (printWordCount > 4) {
@@ -66,9 +67,9 @@ void LL::printList() {
 	}
 	cout << endl;
 	cout << endl;
-	cout << "first is " << first->word << ", last is " << last->word << endl;
-	cout << "size is now " << size << endl;
-	cout << "wordcount is now " << wordcount << endl;
+	//cout << "first is " << first->word << ", last is " << last->word << endl;
+	//cout << "size is now " << size << endl;
+	//cout << "wordcount is now " << wordcount << endl;
 }
 
 /**
@@ -102,10 +103,30 @@ void LL::addAtFirst(string x) {
  * Adds node to end of list
  */
 void LL::push(string x) {
-	NodeL *newNode = new NodeL(x);
-	last->next = newNode;
-	last = newNode;
-	size++;
+	if (first != NULL) {
+		NodeL *newNode = new NodeL(x);
+		last->next = newNode;
+		last = newNode;
+		size++;
+	} else {
+		addFirst(x);
+	}
+}
+
+/**
+ * (6 pts)
+ * Adds node to end of list, includes a score for testing purposes
+ */
+void LL::push(string x, int aScore) {
+	if (first != NULL) {
+		NodeL *newNode = new NodeL(x);
+		last->next = newNode;
+		last = newNode;
+		size++;
+	} else {
+		addFirst(x);
+	}
+	score = aScore;
 }
 
 /**
@@ -288,11 +309,9 @@ void LL::getScore() {
 
 	while (aNode != NULL) {
 		cumulativeScore += aNode->wscore;
+		cout << "Scoring " << aNode->word << ": " << aNode->wscore << " total:  " << cumulativeScore << endl;
 		aNode = aNode->next;
 	}
-
 	score = cumulativeScore;
-	//TODO: Test pls
-
 }
 

@@ -13,11 +13,31 @@
 #include <fstream>
 #include "Game.hpp"
 
+void testAVLTree();
+
+void testGame();
+
+void testLL();
+
 using namespace std;
 
 int main() {
 
 	srand(time(NULL));
+
+	testLL();
+
+	//testAVLTree();
+	testGame();
+
+	//Game *game = new Game("commondict.txt", true);
+	//game->startGame();
+
+	return 0;
+}
+
+
+void testAVLTree() {
 
 	AVLTree testBst(false);
 
@@ -31,27 +51,36 @@ int main() {
 	testBst.addNode("9");
 	testBst.addNode("8");
 	testBst.addNode("8");
-    NodeT *testNode = new NodeT("david");
-    // single node return 0 so this mean the method work.
-    cout<<testBst.getMax(testNode) <<endl;
-    //return 0
-    NodeT *testNode2 = new NodeT("bill");
-    cout<<testBst.getMax(testNode2) <<endl;
+
+	string testString = "7";
+
+//	if (testBst.findWord(testString)) {
+//		cout << "Found " << testString << endl;
+//	} else {
+//		cout << "Couldn't find " << testString << endl;
+//	}
+
+	testBst.printIO();
+	testBst.printPre();
+	testBst.printPost();
 
 
-	cout << (testBst.findWord("4")) << endl;
-	cout << (testBst.findWord("7")) << endl;
-	//cout << (testBst.findWord("3")) << endl;
+};
 
-	//Game *game = new Game("commondict.txt", true);
-	//game->startGame();
-
+void testGame() {
 	Game *testGame = new Game("testdict.txt", false);
 	testGame->startGame();
-    testGame->startGame();
-
-
-
-	return 0;
 }
 
+void testLL() {
+	LL *testLL = new LL();
+	testLL->push("fly", 1);
+	testLL->push("so", 1);
+	testLL->push("of", 1);
+	testLL->push("fool", 1);
+	testLL->push("soy", 1);
+	testLL->push("sly", 1);
+	testLL->push("joy", 1);
+	cout << endl;
+	testLL->printList();
+}

@@ -106,19 +106,19 @@ void Game:: checkWordsForScore() {
 	NodeL *tmp = wordlist.first;
 	while (tmp != NULL) {
 		if (checkWLetters(tmp->word) ) {
-			cout << tmp->word << " is okay  letterwise" << endl;
+			cout << tmp->word << " is okay letter wise" << endl;
 
 			if (dict->findWord(tmp->word,dict->root)) {
-				cout << tmp->word << " is in tree " << endl;
+				cout << tmp->word << " is in tree" << endl;
 				tmp->wscore = 1;
 			}
 			else {
-				cout << tmp->word << " NOT in tree " << endl;
+				cout << tmp->word << " is NOT in tree" << endl;
 				tmp->wscore = -1;
 			}
 		}
 		else {
-			cout << tmp->word << " is invalid letterwise" << endl;
+			cout << tmp->word << " is NOT okay letter wise" << endl;
 			tmp->wscore = -1;
 		}
 		tmp = tmp->next;

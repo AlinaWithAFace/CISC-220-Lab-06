@@ -10,18 +10,19 @@
 
 class AVLTree {
 
-public:
+	friend class Game;
 
 	NodeT *root;  // holds the root of the bst
+
 	bool avlFlag; // flag for whether to adjust bst to be an avl tree
 
-	explicit AVLTree(bool flag);
+	///
 
 	bool findWord(string s, NodeT *n);
 
-	void addNode(string newString);
-
 	void addNode(string newString, NodeT *adoptiveParent);
+
+	///
 
 	void printIO(NodeT *aNode);
 
@@ -29,18 +30,23 @@ public:
 
 	void printPost(NodeT *aNode);
 
-	void adjustHeights(NodeT *n);
+public:
 
-	int getMax(NodeT *n);
-
+	explicit AVLTree(bool flag);
 
 	bool findWord(string s);
+
+	void addNode(string newString);
 
 	void printIO();
 
 	void printPre();
 
 	void printPost();
+
+	void adjustHeights(NodeT *n);
+
+	int getMax(NodeT *n);
 };
 
 
