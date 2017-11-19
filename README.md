@@ -1,4 +1,4 @@
-Lab 6: Binary Search Trees/gameAvlFlag Trees 
+Lab 6: Binary Search Trees/AVL Trees 
 ===
 
 *(and a little bit of linked lists)*
@@ -10,11 +10,11 @@ WordHub
 
 **The idea**:
 A player gets a set of letters of size x (you pick) and then generates as many words as possible with those letters only.
-The words are then checked for validity or not, and a player gets a final gameScore that is the total number of words that used only the letters and occur in a dictionary versus the words that either use invalid letters or don’t occur in the dictionary.
+The words are then checked for validity or not, and a player gets a final score that is the total number of words that used only the letters and occur in a dictionary versus the words that either use invalid letters or don’t occur in the dictionary.
 
 **The crux of this**:
-Reading in a dictionary file into either a Binary Search Tree or a BST modified using gameAvlFlag (an gameAvlFlag tree).
-For this, I used a flag to set whether, as words are being inserted into the binary search tree the tree is also balanced and updated using gameAvlFlag techniques or not.
+Reading in a dictionary file into either a Binary Search Tree or a BST modified using AVL (an AVL tree).
+For this, I used a flag to set whether, as words are being inserted into the binary search tree the tree is also balanced and updated using AVL techniques or not.
 
 Things I didn't worry about:
 Caps versus small letters.
@@ -22,55 +22,55 @@ Caps versus small letters.
 Code you’ll be writing: 
 ---
 
-For this lab you will be creating the header file and the definition file for both an gameAvlFlag tree and a simple linked list.
-With minor adjustments (and one more method) the linked list you wrote for the last lab should work fine, so the focus of this lab will be the gameAvlFlag Tree header and definition files. 
-Note that an gameAvlFlag tree is a binary search tree, with the caveat that it has been adjusted to be balanced as nodes are inserted.  So make sure your gameAvlFlag tree class has a flag that is true when you want to do the necessary check balances and rotations to create an gameAvlFlag balanced binary search tree, and false when you just want a regular balanced binary search tree. You can set the flag in the main function, when creating a Game object.
+For this lab you will be creating the header file and the definition file for both an AVL tree and a simple linked list.
+With minor adjustments (and one more method) the linked list you wrote for the last lab should work fine, so the focus of this lab will be the AVL Tree header and definition files. 
+Note that an AVL tree is a binary search tree, with the caveat that it has been adjusted to be balanced as nodes are inserted.  So make sure your AVL tree class has a flag that is true when you want to do the necessary check balances and rotations to create an AVL balanced binary search tree, and false when you just want a regular balanced binary search tree. You can set the flag in the main function, when creating a Game object.
 
-Binary Search Tree/gameAvlFlag Tree Portion:
+Binary Search Tree/AVL Tree Portion:
 ---
 
-You must write the header and the definitions for the binary search tree/gameAvlFlag tree.  
+You must write the header and the definitions for the binary search tree/AVL tree.  
 
-For the BST/gameAvlFlag Tree, you should have at a minimum the following fields:
-
+For the BST/AVL Tree, you should have at a minimum the following fields:
 ```cpp
-NodeT *root; // holds the root of the bst
+NodeT *root;  // holds the root of the bst
 bool AVLflag; // flag for whether to adjust bst to be an avl tree
 ```
 And your methods should be
 
-**(Note: the below methods are necessary for both the Binary Search Tree and an gameAvlFlag Binary Search Tree, with no difference in how they’re written)**
+**(Note: the below methods are necessary for both the Binary Search Tree and an AVL Binary Search Tree, with no difference in how they’re written)**
 ```cpp
-AVLTree(bool flag); //constructor bool findWord (string s, NodeT *n); // finds whether s is in the bst. Returns true (if found) and false otherwise. Note: I called this with the root so that this method could be recursive. It doesn’t have to be. If you prefer to write this iteratively, you won’t need the NodeT pointer as a parameter.
-void addNode(string s,NodeT *r); //Adding s to the tree. Again, if done recursively, you’ll need a NodeT address as a parameter. If not, you won’t.
+AVLTree(bool flag);  //constructor
+bool findWord (string s, NodeT *n);  // finds whether s is in the bst.  Returns true (if found) and false otherwise.  Note:  I called this with the root so that this method could be recursive.  It doesn’t have to be.  If you prefer to write this iteratively, you won’t need the NodeT pointer as a parameter.
+void addNode(string s,NodeT *r);  Adding s to the tree.  Again, if done recursively, you’ll need a NodeT address as a parameter.  If not, you won’t.
 void printIO(NodeT *root);
 void printPre(NodeT *root);
 void printPost(NodeT *root);
 ```
 **Note: the below methods aren't necessary for a plain Binary Search Tree, but they adjust the heights of nodes, which makes debugging easier.  In addition, if the flag is set, adjustHeights would call the methods that determine whether the balance is okay, and if not, then it determines and calls the appropriate rotations**
 ```cpp
-void adjustHeights(NodeT *n); // starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change. If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up. To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
+void adjustHeights(NodeT *n); //starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.  If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.  To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
 int getMax(NodeT *n); // This method is a little helper method that determines the max height between the left child and the right child and returns that height.
 ```
-Note: the below methods are just for gameAvlFlag Trees and are only called when the gameAvlFlag flag is set to true.
+Note: the below methods are just for AVL Trees and are only called when the AVL flag is set to true.
 ```cpp
 NodeT *rotateRight(NodeT *n); // This method does an AVL right rotation, returning the new parent
 NodeT * rotateLeft(NodeT *n); // This method does an AVL left rotation, returning the new parent
-int getDiff(NodeT *n); // This method gets the difference between the left and the right child.
+int getDiff(NodeT *n);  // This method gets the difference between the left and the right child.
 ```
-For the AvlTree class, you can write other methods if you want.  Equally, the helper methods (getMax, getDiff) aren’t necessary, but I liked having them.
+For the AVLTree class, you can write other methods if you want.  Equally, the helper methods (getMax, getDiff) aren’t necessary, but I liked having them.
 
 Linked List Portion:
 ---
 
-The linked list portion is for the words the user types in after s/he has received his/her letters.  Each word is added to the linked list.  These are the words that are checked with the dictionary  (which is in the form of a binary search tree) in the Game oject’s methods.  Your job is to write the header file and the definitions for a Linked List.  Because we’re just adding words to an empty linked list, the methods required are a subset of the methods you wrote for lab 5.  The only new field and method is the gameScore field/ getScore method.  The gameScore is initially set to 0.  The getScore method traverses the list and adds the gameScore of each word/Node in the list, then sets the gameScore to be that total.
+The linked list portion is for the words the user types in after s/he has received his/her letters.  Each word is added to the linked list.  These are the words that are checked with the dictionary  (which is in the form of a binary search tree) in the Game oject’s methods.  Your job is to write the header file and the definitions for a Linked List.  Because we’re just adding words to an empty linked list, the methods required are a subset of the methods you wrote for lab 5.  The only new field and method is the score field/ getScore method.  The score is initially set to 0.  The getScore method traverses the list and adds the score of each word/Node in the list, then sets the score to be that total.
 
 For the Linked List, you should have at a minimum the following fields:
 ```cpp
 NodeL *first;
 NodeL *last;
 int size;
-int score; // This field is for the game’s score, and will be set using a getScore method, below. It should be initialized in the constructor to 0.
+int score;   // This field is for the game’s score, and will be set using a getScore method, below.  It should be initialized in the constructor to 0.
 ```
 And your methods you’ll need for this are:
 ```cpp
@@ -78,7 +78,7 @@ LL();
 void push(string s);
 void addFirst(string s);
 void printList();
-void getScore(); // This is the new method – each word already has a score. This method just traverses the linked list from the first to the last node and keeps a running total of the wscore of each node. Then the score field is set to that total.
+void getScore();  // This is the new method – each word already has a score.  This method just traverses the linked list from the first to the last node and keeps a running total of the wscore of each node.  Then the score field is set to that total.
 ```
 
 To Test:
@@ -91,22 +91,20 @@ Make sure your output looks like my output (included below) for the pre-order , 
 Check to see if you have output similar to my game output below
 (Note: to do this properly, test with the commondict.txt file, which has about 2000 of the most common English words.
 This isn’t as good as the scrabble dictionary, also included, but on the other hand the scrabble dictionary will take forever to read in, so for testing purposes, you probably want to stick with the commondict.txt file.
-
     1.  Make sure you try a word with characters not in your list.
     Make sure at least one word is in the dictionary, and one isn’t.
-    Check to make sure the words are scored correctly and the final gameScore is correct.
+    Check to make sure the words are scored correctly and the final score is correct.
 
 4. (35 pts) In Main, go back to using testdict.txt and change the flag to true.
-This should turn on the gameAvlFlag Tree flag so that the tree created uses the gameAvlFlag techniques to balance the tree.
+This should turn on the AVL Tree flag so that the tree created uses the AVL techniques to balance the tree.
 Recomment out the startGame method.
 Check to see that your ouput for pre, in, and postorder printouts look like mine, below.
 
 5. (15 pts) Uncomment Out the startGame method in the main, and run the program.
 Make sure everything still works.
-
     1. Make sure you try a word with characters not in your list.
     Make sure at least one word is in the in the dictionary, and one isn’t.
-    Check to make sure the words are scored correctly and the final gameScore is correct.
+    Check to make sure the words are scored correctly and the final score is correct.
 
 Extra Credit: 
 ---
@@ -119,7 +117,7 @@ Extra Credit:
 Output
 ---
 
-**(Pt 1) Testdict with avlFlag turned off to false (so just a regular binary search tree):**
+**(Pt 1) Testdict with AVLflag turned off to false (so just a regular binary search tree):**
 ```
 Adding: babe
 Made root
@@ -368,7 +366,7 @@ fly:1, so:1, of:1, fool:-1, soy:-1, coy:-1, joy:1, sly:-1, toy:-1, blug:-1,
 Final Score is: -2
 ```
 ---------------------------------------------------------------------
-**(Pt 3) Testdict with avlFlag turned on  to true:**
+**(Pt 3) Testdict with AVLflag turned on  to true:**
 ```
 Adding: babe
 Made root
@@ -632,7 +630,7 @@ Printing Postorder:
 |5:juice| 
 ```
 ---------------------------------------------------------------------
-**(Pt 4) Whole thing with gameAvlFlag Tree
+**(Pt 4) Whole thing with AVL Tree
 (NOTE: If this works, it should look just like the output with the BST.
 However, you still need to make sure it works):**
 ```
