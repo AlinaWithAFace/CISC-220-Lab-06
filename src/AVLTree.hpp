@@ -32,6 +32,12 @@ class AVLTree {
 
 public:
 
+	int getMax(NodeT *n);
+
+    NodeT *rightRotate(NodeT *n);
+
+    NodeT *leftRotate(NodeT *n);
+
 	explicit AVLTree(bool flag);
 
 	bool findWord(string s);

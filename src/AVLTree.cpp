@@ -126,6 +126,7 @@ void AVLTree::printIO(NodeT *aNode) {
  */
 void AVLTree::printPre() {
 	printPre(root);
+    getMax(root);
 	cout << endl;
 }
 
@@ -198,6 +199,27 @@ NodeT *rightRotate(NodeT *n) {
  * (since presumably everything else above it is already set properly)
  * @param n
  */
+NodeT *leftRotate(NodeT *n){
+    NodeT *x=n->right;
+    NodeT *tmp=n->left;
+    x->left=n;
+    n->right=tmp;
+    //update height
+    if (n->left->height>n->right->height){
+        n->height=n->left->height+1;
+    }
+    else{
+        n->height=n->right->height+1;
+    }
+    if (x->left->height>x->right->height){
+        x->height=x->left->height+1;
+    }
+    else{
+        x->height=x->right->height+1;
+    }
+    return x; // new root
+}
+
 void AVLTree::adjustHeights(NodeT *n) {
 	n->height = 1;
 	int childHeights = n->height;
@@ -240,6 +262,9 @@ int AVLTree::getMax(NodeT *n) {
 	if (n == NULL) {
 		return -1;
 	}
-	return max(getMax(n->left), getMax(n->right)) + 1;
+    else {
+        cout<<"should be 0"<<endl;
+        return max(getMax(n->left), getMax(n->right)) + 1;
+    }
 
 }

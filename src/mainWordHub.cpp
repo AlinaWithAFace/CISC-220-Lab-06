@@ -46,6 +46,7 @@ void testAVLTree() {
 	testBst.addNode("5");
 
 	//testBst.root->printTNode();
+    NodeT *testrotate;
 
 	testBst.addNode("6");
 	testBst.addNode("4");
