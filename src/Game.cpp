@@ -24,11 +24,8 @@ Game::Game(string filen, bool AVLflag) {
 	AVL = AVLflag;
 	dictfile = filen;
 	readTreeFromFile();
-	cout << "\nPrinting In-order: " << endl;
 	dict->printIO();
-	cout << "\nPrinting Pre-order: " << endl;
 	dict->printPre();
-	cout << "\nPrinting Post-order: " << endl;
 	dict->printPost();
 	numletters = 0;
 	//numright = 0;
@@ -110,7 +107,7 @@ void Game::checkWordsForScore() {
 		if (checkWLetters(tmp->word)) {
 			cout << tmp->word << " is okay letter wise" << endl;
 
-			if (dict->findWord(tmp->word, dict->root)) {
+			if (dict->findWord(tmp->word)) {
 				cout << tmp->word << " is in tree" << endl;
 				tmp->wscore = 1;
 			} else {

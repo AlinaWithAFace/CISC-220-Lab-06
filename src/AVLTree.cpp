@@ -37,18 +37,26 @@ bool AVLTree::findWord(string s) {
  * @return
  */
 bool AVLTree::findWord(string s, NodeT *n) {
-	if (n == NULL) {
-		return false;
-	} else if (s == n->word) {
-		return true;
-	} else if (s < n->word) {
-		return findWord(s, n->left);
-	} else if (s > n->word) {
-		return findWord(s, n->right);
-	} else {
-		return false;
+	bool foundWord = false;
+	NodeT *aNode = n;
+	cout << "\nFinding " << s << "..." << endl;
+
+	while (aNode != NULL) {
+
+		if (s == aNode->word) {
+			foundWord = true;
+			aNode = NULL;
+		} else if (s < aNode->word) {
+			cout << "Checking left of " << aNode->word << endl;
+			aNode = aNode->left;
+		} else if (s > aNode->word) {
+			cout << "Checking right of " << aNode->word << endl;
+			aNode = aNode->right;
+		}
 	}
-	//TODO: this is broken, it has (had?) an infinite loop somewhere, probably when it tries to call itself.
+	cout << (foundWord ? "Found " : "Couldn't find ") << s << endl;
+
+	return foundWord;
 }
 
 /**
@@ -105,6 +113,7 @@ void AVLTree::addNode(string newString, NodeT *adoptiveParent) {
  * Call printIO starting at the root
  */
 void AVLTree::printIO() {
+	cout << "\nPrinting In-order: " << endl;
 	printIO(root);
 }
 
@@ -124,6 +133,7 @@ void AVLTree::printIO(NodeT *aNode) {
  * Call printPre starting at the root
  */
 void AVLTree::printPre() {
+	cout << "\nPrinting Pre-order: " << endl;
 	printPre(root);
 }
 
@@ -142,6 +152,7 @@ void AVLTree::printPre(NodeT *aNode) {
  * Call printPost starting at the root
  */
 void AVLTree::printPost() {
+	cout << "\nPrinting Post-order: " << endl;
 	printPost(root);
 }
 
@@ -254,6 +265,9 @@ void AVLTree::adjustHeights(NodeT *n) {
  * @return
  */
 int AVLTree::getMax(NodeT *n) {
+	if (n == NULL) {
+		return 0;
+	}
 	if (n->left == NULL) {
 		return n->right->height;
 	} else if (n->right == NULL) {

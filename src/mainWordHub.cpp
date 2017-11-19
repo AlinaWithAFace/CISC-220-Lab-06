@@ -59,7 +59,7 @@ void testAVLTree() {
 	testBst.addNode("5");
 
 	//testBst.root->printTNode();
-    NodeT *testrotate;
+	NodeT *testrotate;
 
 	testBst.addNode("6");
 	testBst.addNode("4");
@@ -74,17 +74,15 @@ void testAVLTree() {
 	//NodeT *testNode2 = new NodeT("bill");
 	//cout << testBst.getMax(testNode2) << endl;
 
-	string testString = "7";
-
-//	if (testBst.findWord(testString)) {
-//		cout << "Found " << testString << endl;
-//	} else {
-//		cout << "Couldn't find " << testString << endl;
-//	}
 
 	testBst.printIO();
 	testBst.printPre();
 	testBst.printPost();
+
+	testBst.findWord("7");
+	testBst.findWord("3");
+	testBst.findWord("6");
+
 };
 
 void testGame() {
