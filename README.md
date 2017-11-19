@@ -50,7 +50,7 @@ void printPost(NodeT *root);
 **Note: the below methods aren't necessary for a plain Binary Search Tree, but they adjust the heights of nodes, which makes debugging easier.  In addition, if the flag is set, adjustHeights would call the methods that determine whether the balance is okay, and if not, then it determines and calls the appropriate rotations**
 ```cpp
 void adjustHeights(NodeT *n); // starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.  If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.  To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1. MAKE SURE you attach the newly rotated top node to the parent above it.
-int getMax(NodeT *n); // This method is a little helper method that determines the max height between the left child and the right child and returns that height.
+int getMaxHeight(NodeT *n); // This method is a little helper method that determines the max height between the left child and the right child and returns that height.
 ```
 Note: the below methods are just for AVL Trees and are only called when the AVL flag is set to true.
 ```cpp
@@ -58,7 +58,7 @@ NodeT *rotateRight(NodeT *n); // This method does an AVL right rotation, returni
 NodeT * rotateLeft(NodeT *n); // This method does an AVL left rotation, returning the new parent
 int getDiff(NodeT *n);  // This method gets the difference between the left and the right child.
 ```
-For the AVLTree class, you can write other methods if you want.  Equally, the helper methods (getMax, getDiff) aren’t necessary, but I liked having them.
+For the AVLTree class, you can write other methods if you want.  Equally, the helper methods (getMaxHeight, getDiff) aren’t necessary, but I liked having them.
 
 Linked List Portion:
 ---

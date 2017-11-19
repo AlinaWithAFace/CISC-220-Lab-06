@@ -39,7 +39,7 @@ bool AVLTree::findWord(string s) {
 bool AVLTree::findWord(string s, NodeT *n) {
 	bool foundWord = false;
 	NodeT *aNode = n;
-	cout << "\nFinding " << s << "..." << endl;
+	//cout << "\nFinding " << s << "..." << endl;
 
 	while (aNode != NULL) {
 
@@ -47,14 +47,14 @@ bool AVLTree::findWord(string s, NodeT *n) {
 			foundWord = true;
 			aNode = NULL;
 		} else if (s < aNode->word) {
-			cout << "Checking left of " << aNode->word << endl;
+			//cout << "Checking left of " << aNode->word << endl;
 			aNode = aNode->left;
 		} else if (s > aNode->word) {
-			cout << "Checking right of " << aNode->word << endl;
+			//cout << "Checking right of " << aNode->word << endl;
 			aNode = aNode->right;
 		}
 	}
-	cout << (foundWord ? "Found " : "Couldn't find ") << s << endl;
+	//cout << (foundWord ? "Found " : "Couldn't find ") << s << endl;
 
 	return foundWord;
 }
@@ -167,7 +167,6 @@ void AVLTree::printPost(NodeT *aNode) {
 	aNode->printTNode();
 }
 
-
 /**
  * Starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.
  * If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.
@@ -198,13 +197,9 @@ NodeT *rightRotate(NodeT *n) {
 }
 
 /**
- * Adjusts the heights of a given NodeT and all of its parents.
- * For example, if a node has just been added:
- * It should have a height of 1, its parents should have a height of 2, its grandparents should have a height of 3, etc.
- * In this case, 0 means a height has been unassigned. Valid heights cannot be below 1.
- * If the parent's height is unchanged, for example if you try to change a grandparent's height to 3, but it's already 3, we can stop
- * (since presumably everything else above it is already set properly)
+ * Rotates to the left.
  * @param n
+ * @return
  */
 NodeT *leftRotate(NodeT *n) {
 	NodeT *x = n->right;
@@ -225,6 +220,16 @@ NodeT *leftRotate(NodeT *n) {
 	return x; // new root
 }
 
+
+/**
+ * Adjusts the heights of a given NodeT and all of its parents.
+ * For example, if a node has just been added:
+ * It should have a height of 1, its parents should have a height of 2, its grandparents should have a height of 3, etc.
+ * In this case, 0 means a height has been unassigned. Valid heights cannot be below 1.
+ * If the parent's height is unchanged, for example if you try to change a grandparent's height to 3, but it's already 3, we can stop
+ * (since presumably everything else above it is already set properly)
+ * @param n
+ */
 void AVLTree::adjustHeights(NodeT *n) {
 	n->height = 1;
 	int childHeights = n->height;
@@ -236,13 +241,20 @@ void AVLTree::adjustHeights(NodeT *n) {
 		//cout << aNode->word << "'s height is currently " << aNode->height << flush;
 
 		if (childHeights == aNode->height) {
-			//cout << endl;
 			return; // If it's what we were going to change it to anyway, stop, because everything else above it should be okay.
-		} else if (childHeights > aNode->height) {
-			aNode->height = childHeights;
+		} else {
+			// TODO: this doesn't quite work, it only updates it with the child's height if it's smaller
+			// so if something gets deleted this will break
 
-			//aNode->height = getMax(aNode);
-			//cout << ", Updating to " << aNode->height << flush;
+
+			cout << aNode->word << "'s current height: " << aNode->height << flush;
+			cout << ", trying to update height to: " << childHeights << endl;
+			int newHeight = childHeights;
+			newHeight = 1 + getMaxHeight(aNode);
+
+			cout << "Setting height to " << newHeight << endl;
+
+			aNode->height = newHeight;
 
 			if (avlFlag) {
 				// if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
@@ -253,8 +265,6 @@ void AVLTree::adjustHeights(NodeT *n) {
 				// adjust parent and grandparent node
 			}
 		}
-		//cout << endl;
-
 		aNode = aNode->parent;
 	}
 }
@@ -264,22 +274,39 @@ void AVLTree::adjustHeights(NodeT *n) {
  * @param n
  * @return
  */
-int AVLTree::getMax(NodeT *n) {
-	if (n == NULL) {
-		return 0;
+int AVLTree::getMaxHeight(NodeT *n) {
+	int maxHeight;
+	//cout << "Checking " << n->word << "'s child nodes for max..." << endl;
+
+	if (n->left == NULL && n->right == NULL) {
+		//cout << "Neither left nor right exist. What gives?" << endl;
+		maxHeight = 0;
 	}
-	if (n->left == NULL) {
-		return n->right->height;
-	} else if (n->right == NULL) {
-		return n->left->height;
+	if (n->right == NULL) {
+		//cout << "Right NULL" << endl;
+		maxHeight = n->left->height;
 	} else {
+		//cout << "Right exists: " << flush;
+		//n->right->printTNode();
+	}
+
+	if (n->left == NULL) {
+		//cout << "Left NULL" << endl;
+		maxHeight = n->right->height;
+
+	} else {
+		//cout << "Left exists: " << flush;
+		//n->left->printTNode();
+	}
+
+	if (n->left != NULL && n->right != NULL) {
 		if (n->left->height >= n->right->height) {
-			return n->left->height;
-		} else if (n->right->height > n->left->height) {
-			return n->right->height;
+			//cout << "Left is greater than right" << endl;
+			maxHeight = n->left->height;
 		} else {
-			cout << "Something in getMax broke, aborting..." << endl;
-			abort();
+			//cout << "Right is greater than left" << endl;
+			maxHeight = n->right->height;
 		}
 	}
+	return maxHeight;
 }

@@ -32,7 +32,7 @@ class AVLTree {
 
 public:
 
-	int getMax(NodeT *n);
+	int getMaxHeight(NodeT *n);
 
     NodeT *rightRotate(NodeT *n);
 
