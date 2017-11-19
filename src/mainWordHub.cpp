@@ -67,12 +67,14 @@ void testAVLTree() {
 	testBst.addNode("9");
 	testBst.addNode("8");
 	testBst.addNode("8");
-	//NodeT *testNode = new NodeT("david");
+	NodeT *testNode = new NodeT("david");
 	// single node return 0 so this mean the method work.
 	//cout << testBst.getMax(testNode) << endl;
 	//return 0
 	//NodeT *testNode2 = new NodeT("bill");
 	//cout << testBst.getMax(testNode2) << endl;
+    testBst.rightRotate(testNode);
+    testBst.leftRotate(testNode);
 
 
 	testBst.printIO();
