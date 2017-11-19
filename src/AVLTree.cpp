@@ -69,12 +69,9 @@ void AVLTree::addNode(string newString) {
  * @param adoptiveParent The potential parent node for the newString.
  */
 void AVLTree::addNode(string newString, NodeT *adoptiveParent) {
-	//TODO: Uh, crap, it's a toggleable AVL tree. This could get... complicated.
-	// Great, it's a normal binary search tree, we don't have to do anything fancy.
-	// This is really complicated and nested though, there might be a better way to deal with this mass of nested ifelses.
-	// TODO: the heights are all wrong, fix it
+	NodeT *babyNode = new NodeT(newString);
 	if (root == NULL) {
-		root = new NodeT(newString);
+		root = babyNode;
 		cout << "Made root" << endl;
 	} else if (newString == adoptiveParent->word) {
 		//cout << newString << " is equal to " << adoptiveParent->word << endl;
@@ -83,7 +80,7 @@ void AVLTree::addNode(string newString, NodeT *adoptiveParent) {
 		//cout << newString << " is greater than " << adoptiveParent->word << endl;
 		if (adoptiveParent->right == NULL) {
 			cout << "Inserting to right of " << adoptiveParent->word << endl;
-			adoptiveParent->right = new NodeT(newString);
+			adoptiveParent->right = babyNode;
 			adoptiveParent->right->parent = adoptiveParent;
 		} else {
 			cout << "Looking right of " << adoptiveParent->word << endl;
@@ -93,12 +90,16 @@ void AVLTree::addNode(string newString, NodeT *adoptiveParent) {
 		//cout << newString << " is less than " << adoptiveParent->word << endl;
 		if (adoptiveParent->left == NULL) {
 			cout << "Inserting to left of " << adoptiveParent->word << endl;
-			adoptiveParent->left = new NodeT(newString);
+			adoptiveParent->left = babyNode;
 			adoptiveParent->left->parent = adoptiveParent;
 		} else {
 			cout << "Looking left of " << adoptiveParent->word << endl;
 			(addNode(newString, adoptiveParent->left));
 		}
+	}
+	if (avlFlag) {
+		// If it's an AVL tree, we adjust the heights and rotate accordingly if necessary *somewhere else*
+		adjustHeights(babyNode);
 	}
 }
 
@@ -190,6 +191,15 @@ NodeT *rightRotate(NodeT *n) {
 
 }
 
+/**
+ * Adjusts the heights of a given NodeT and all of its parents.
+ * For example, if a node has just been added:
+ * It should have a height of 1, its parents should have a height of 2, its grandparents should have a height of 3, etc.
+ * In this case, 0 means a height has been unassigned. Valid heights cannot be below 1.
+ * If the parent's height is unchanged, for example if you try to change a grandparent's height to 3, but it's already 3, we can stop
+ * (since presumably everything else above it is already set properly)
+ * @param n
+ */
 void AVLTree::adjustHeights(NodeT *n) {
 //TODO build rotations
 	// adjust height of childs
