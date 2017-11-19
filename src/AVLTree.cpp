@@ -199,29 +199,36 @@ NodeT *rightRotate(NodeT *n) {
  * @param n
  */
 void AVLTree::adjustHeights(NodeT *n) {
-//	n->height = 1;
-//	int heights = 0;
-//
-//	NodeT* aNode = n->parent;
-//	while (aNode != NULL){
-//		heights++;
-//		cout << "Height of << is possibly " << endl;
-//
-//		aNode = aNode->parent;
-//	}
+	n->height = 1;
+	int childHeights = n->height;
 
-//TODO build rotations
-	// adjust height of childs
-	//check balance
-	// if flag is true check balance
-	// adjust parent and grandparent node
+	NodeT *aNode = n->parent;
+	while (aNode != NULL) {
 
-	if (avlFlag) {
-		// if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
+		childHeights++;
+		cout << aNode->word << "'s height is currently " << aNode->height << flush;
 
+		if (childHeights == aNode->height) {
+			cout << endl;
+			return; // If it's what we were going to change it to anyway, stop, because everything else above it should be okay.
+		} else if (aNode->height < childHeights) {
+			cout << ", Updating to " << childHeights << flush;
+			aNode->height = childHeights;
+
+			if (avlFlag) {
+				// if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
+				//TODO build rotations
+				// adjust height of childs
+				//check balance
+				// if flag is true check balance
+				// adjust parent and grandparent node
+			}
+		}
+		cout << endl;
+
+		aNode = aNode->parent;
 	}
 }
-
 
 /**
  * This method is a little helper method that determines the max height between the left child and the right child and returns that height.

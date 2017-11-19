@@ -26,14 +26,14 @@ int main() {
 	//testLL();
 
 	//testAVLTree();
-	//testGame();
+	testGame();
 
 	///
 
 	srand(time(NULL));
 
-	Game *game = new Game("commondict.txt", true);
-	game->startGame();
+	//Game *game = new Game("commondict.txt", true);
+	//game->startGame();
 
 	return 0;
 }
