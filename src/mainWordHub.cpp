@@ -25,14 +25,14 @@ int main() {
 
 	//testLL();
 
-	//testAVLTree();
+	testAVLTree();
 	//testGame();
 
 	///
 
 //	srand(time(NULL));
 //
-	Game *testDictBST = new Game("testdict.txt", false);
+//	Game *testDictBST = new Game("testdict.txt", false);
 //
 //	cout << "****************************" << endl;
 //
@@ -54,21 +54,48 @@ int main() {
 
 void testAVLTree() {
 
-	AVLTree testBst(false);
+//	AVLTree testBst(false);
+//
+//	testBst.addNode("32");
+//	testBst.addNode("17");
+//	testBst.addNode("24");
+//	testBst.addNode("12");
+//	testBst.addNode("15");
+//	testBst.addNode("20");
+//	testBst.addNode("19");
+//	testBst.addNode("2");
+//	testBst.addNode("7");
+//
+//	testBst.printIO();
+//	testBst.printPre();
+//	testBst.printPost();
 
-	testBst.addNode("32");
-	testBst.addNode("17");
-	testBst.addNode("24");
-	testBst.addNode("12");
-	testBst.addNode("15");
-	testBst.addNode("20");
-	testBst.addNode("19");
-	testBst.addNode("2");
-	testBst.addNode("7");
+	// Thanks internet https://stackoverflow.com/questions/3955680/how-to-check-if-my-avl-tree-implementation-is-correct
 
-	testBst.printIO();
-	testBst.printPre();
-	testBst.printPost();
+	AVLTree rotationTestTree1L(true);
+
+	rotationTestTree1L.addNode("a");
+	rotationTestTree1L.addNode("b");
+	rotationTestTree1L.addNode("c");
+
+	AVLTree rotationTestTree1R(true);
+
+	rotationTestTree1R.addNode("c");
+	rotationTestTree1R.addNode("b");
+	rotationTestTree1R.addNode("a");
+
+	AVLTree rotationTestTree2L(true);
+
+	rotationTestTree2L.addNode("a");
+	rotationTestTree2L.addNode("c");
+	rotationTestTree2L.addNode("b");
+
+	AVLTree rotationTestTree2R(true);
+
+	rotationTestTree2R.addNode("c");
+	rotationTestTree2R.addNode("a");
+	rotationTestTree2R.addNode("b");
+
 };
 
 void testGame() {

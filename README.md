@@ -372,6 +372,7 @@ Final Score is: -2
 ```
 Adding: babe
 Made root
+
 Adding: rest
 Inserting to right of babe
 
@@ -385,6 +386,7 @@ Height of right child before: rest:2
 height of babe is now 1
 height of rest is now 2
 rest is new root
+
 Adding: shawn
 Looking right of rest
 Inserting to left of wanton

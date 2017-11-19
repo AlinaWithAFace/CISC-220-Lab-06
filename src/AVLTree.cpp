@@ -167,14 +167,12 @@ void AVLTree::printPost(NodeT *aNode) {
 	aNode->printTNode();
 }
 
+
 /**
- * Starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.
- * If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.
- * To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1.
- * MAKE SURE you attach the newly rotated top node to the parent above it.
+ * Right rotation code taken from powerpoint
  * @param n
+ * @return
  */
-//right rotation code taken from powerpoint
 NodeT *rotateRight(NodeT *n) {
 	NodeT *x = n->left;
 	NodeT *tmp = n->right;
@@ -222,12 +220,10 @@ NodeT *rotateLeft(NodeT *n) {
 
 
 /**
- * Adjusts the heights of a given NodeT and all of its parents.
- * For example, if a node has just been added:
- * It should have a height of 1, its parents should have a height of 2, its grandparents should have a height of 3, etc.
- * In this case, 0 means a height has been unassigned. Valid heights cannot be below 1.
- * If the parent's height is unchanged, for example if you try to change a grandparent's height to 3, but it's already 3, we can stop
- * (since presumably everything else above it is already set properly)
+ * Starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.
+ * If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.
+ * To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1.
+ * MAKE SURE you attach the newly rotated top node to the parent above it.
  * @param n
  */
 void AVLTree::adjustHeights(NodeT *n) {
@@ -249,12 +245,16 @@ void AVLTree::adjustHeights(NodeT *n) {
 			newHeight = 1 + getMaxHeight(aNode);
 
 			if (avlFlag) {
+
+
 				// if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
 				//TODO build rotations
 				// adjust height of childs
 				//check balance
 				// if flag is true check balance
 				// adjust parent and grandparent node
+
+
 			}
 			//cout << "Setting height to " << newHeight << endl;
 			aNode->height = newHeight;
@@ -273,9 +273,10 @@ int AVLTree::getMaxHeight(NodeT *n) {
 	//cout << "Checking " << n->word << "'s child nodes for max..." << endl;
 
 	if (n->left == NULL && n->right == NULL) {
-		//cout << "Neither left nor right exist. What gives?" << endl;
+		//cout << "Neither left nor right exist." << endl;
 		maxHeight = 0;
 	}
+
 	if (n->right == NULL) {
 		//cout << "Right NULL" << endl;
 		maxHeight = n->left->height;
@@ -287,7 +288,6 @@ int AVLTree::getMaxHeight(NodeT *n) {
 	if (n->left == NULL) {
 		//cout << "Left NULL" << endl;
 		maxHeight = n->right->height;
-
 	} else {
 		//cout << "Left exists: " << flush;
 		//n->left->printTNode();
