@@ -145,7 +145,14 @@ void Game::readTreeFromFile () {
 	return;
 }
 
-	//=
+/**
+ * Figure out the game's score, this is unused?
+ */
+void Game::getScore() {
+	wordlist.getScore();
+}
+
+//=
 
 
 

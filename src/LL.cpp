@@ -309,7 +309,7 @@ void LL::getScore() {
 
 	while (aNode != NULL) {
 		cumulativeScore += aNode->wscore;
-		cout << "Scoring " << aNode->word << ": " << aNode->wscore << " total:  " << cumulativeScore << endl;
+		//cout << "Scoring " << aNode->word << ": " << aNode->wscore << " total:  " << cumulativeScore << endl;
 		aNode = aNode->next;
 	}
 	score = cumulativeScore;

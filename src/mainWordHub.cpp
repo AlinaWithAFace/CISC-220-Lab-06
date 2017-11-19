@@ -23,15 +23,17 @@ using namespace std;
 
 int main() {
 
-	srand(time(NULL));
-
-	testLL();
+	//testLL();
 
 	//testAVLTree();
-	testGame();
+	//testGame();
 
-	//Game *game = new Game("commondict.txt", true);
-	//game->startGame();
+	///
+
+	srand(time(NULL));
+
+	Game *game = new Game("commondict.txt", true);
+	game->startGame();
 
 	return 0;
 }
@@ -51,6 +53,12 @@ void testAVLTree() {
 	testBst.addNode("9");
 	testBst.addNode("8");
 	testBst.addNode("8");
+    NodeT *testNode = new NodeT("david");
+    // single node return 0 so this mean the method work.
+    cout<<testBst.getMax(testNode) <<endl;
+    //return 0
+    NodeT *testNode2 = new NodeT("bill");
+    cout<<testBst.getMax(testNode2) <<endl;
 
 	string testString = "7";
 
