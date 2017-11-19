@@ -69,7 +69,6 @@ void testAVLTree() {
 	testBst.printIO();
 	testBst.printPre();
 	testBst.printPost();
-
 };
 
 void testGame() {
