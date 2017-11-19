@@ -119,8 +119,10 @@ Output
 
 **(Pt 1) Testdict with AVLflag turned off to false (so just a regular binary search tree):**
 ```
+
 Adding: babe
 Made root
+
 Adding: rest
 Inserting to right of babe
 
@@ -326,7 +328,7 @@ Printing Postorder:
 |9:babe|
 ```
 ---------------------------------------------------------------------
-**(Pt 2) Whole thing with just BST:**
+**(Pt 2) Commondict with just BST:**
 ```
 How many letters do you want?
 8
@@ -345,20 +347,20 @@ toy
 blug
 -1
 fly:0, so:0, of:0, fool:0, soy:0, coy:0, joy:0, sly:0, toy:0, blug:0, 
-fly is okay  letterwise
+fly is okay letterwise
 fly is in tree 
-so is okay  letterwise
+so is okay letterwise
 so is in tree 
-of is okay  letterwise
+of is okay letterwise
 of is in tree 
 fool is invalid letterwise
-soy is okay  letterwise
+soy is okay letterwise
 soy NOT in tree 
-coy is okay  letterwise
+coy is okay letterwise
 coy NOT in tree 
-joy is okay  letterwise
+joy is okay letterwise
 joy is in tree 
-sly is okay  letterwise
+sly is okay letterwise
 sly NOT in tree 
 toy is invalid letterwise
 blug is invalid letterwise
@@ -366,7 +368,7 @@ fly:1, so:1, of:1, fool:-1, soy:-1, coy:-1, joy:1, sly:-1, toy:-1, blug:-1,
 Final Score is: -2
 ```
 ---------------------------------------------------------------------
-**(Pt 3) Testdict with AVLflag turned on  to true:**
+**(Pt 3) Testdict with AVLflag turned on to true:**
 ```
 Adding: babe
 Made root
@@ -380,7 +382,8 @@ Inserting to right of rest
 Rotating left around babe
 Height of node before: babe:3
 Height of right child before: rest:2
-height of babe is now 1height of rest is now 2
+height of babe is now 1
+height of rest is now 2
 rest is new root
 Adding: shawn
 Looking right of rest
@@ -398,7 +401,8 @@ Inserting to right of dunce
 Rotating left around babe
 Height of node before: babe:3
 Height of right child before: dunce:2
-height of babe is now 1height of dunce is now 2
+height of babe is now 1
+height of dunce is now 2
 resetting rest's left to dunce
 Adding: deject
 Looking left of rest
@@ -415,10 +419,12 @@ Rotating left around babe
 right rotate first deject
 Height of node before: deject:2
 Height of right child before: chars:1
-height of deject is now 1height of chars is now 2
+height of deject is now 1
+height of chars is now 2
 Height of node before: babe:3
 Height of right child before: chars:2
-height of babe is now 1height of chars is now 2
+height of babe is now 1
+height of chars is now 2
 resetting dunce's left to chars
 Adding: master
 Looking left of rest
@@ -435,10 +441,12 @@ Rotating left around fabric
 right rotate first master
 Height of node before: master:2
 Height of right child before: lose:1
-height of master is now 1height of lose is now 2
+height of master is now 1
+height of lose is now 2
 Height of node before: fabric:3
 Height of right child before: lose:2
-height of fabric is now 1height of lose is now 2
+height of fabric is now 1
+height of lose is now 2
 resetting dunce's right to lose
 Adding: believe
 Looking left of rest
@@ -449,7 +457,8 @@ Inserting to right of babe
 Rotating right around rest
 Height of node before: rest:5
 Height of right child before: dunce:4
-height of rest is now 3height of dunce is now 4
+height of rest is now 3
+height of dunce is now 4
 dunce is new root
 Adding: grange
 Looking right of dunce
@@ -467,7 +476,8 @@ Inserting to right of grange
 Rotating left around fabric
 Height of node before: fabric:3
 Height of right child before: grange:2
-height of fabric is now 1height of grange is now 2
+height of fabric is now 1
+height of grange is now 2
 resetting lose's left to grange
 Adding: super
 Looking right of dunce
@@ -479,10 +489,12 @@ Rotating right around wanton
 Left rotate first shawn
 Height of node before: shawn:2
 Height of right child before: super:1
-height of shawn is now 1height of super is now 2
+height of shawn is now 1
+height of super is now 2
 Height of node before: wanton:3
 Height of right child before: super:2
-height of wanton is now 1height of super is now 2
+height of wanton is now 1
+height of super is now 2
 resetting rest's right to super
 Adding: sort
 Looking right of dunce
@@ -501,10 +513,12 @@ Rotating right around lose
 Left rotate first grange
 Height of node before: grange:3
 Height of right child before: juice:2
-height of grange is now 2height of juice is now 3
+height of grange is now 2
+height of juice is now 3
 Height of node before: lose:4
 Height of right child before: juice:3
-height of lose is now 2height of juice is now 3
+height of lose is now 2
+height of juice is now 3
 resetting rest's left to juice
 Adding: frisbee
 Looking right of dunce
@@ -517,10 +531,12 @@ Rotating left around dunce
 right rotate first rest
 Height of node before: rest:5
 Height of right child before: juice:4
-height of rest is now 4height of juice is now 5
+height of rest is now 4
+height of juice is now 5
 Height of node before: dunce:6
 Height of right child before: juice:5
-height of dunce is now 4height of juice is now 5
+height of dunce is now 4
+height of juice is now 5
 juice is new root
 Adding: running
 Looking right of juice
@@ -537,7 +553,8 @@ Inserting to right of master
 Rotating left around lose
 Height of node before: lose:3
 Height of right child before: master:2
-height of lose is now 1height of master is now 2
+height of lose is now 1
+height of master is now 2
 resetting rest's left to master
 Adding: tint
 Looking right of juice

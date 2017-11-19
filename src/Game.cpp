@@ -16,20 +16,20 @@
 
 using namespace std;
 
-Game::Game(){
+Game::Game() {
 	Game("dict.txt", false);
 }
 
-Game::Game(string filen, bool AVLflag){
+Game::Game(string filen, bool AVLflag) {
 	AVL = AVLflag;
 	dictfile = filen;
 	readTreeFromFile();
-	cout << "Printing in order: " << endl;
-	dict->printIO(dict->root);
-	cout << endl<<"Printing Preorder: " << endl;
-	dict->printPre(dict->root);
-	cout << endl<<"Printing Postorder: " << endl;
-	dict->printPost(dict->root);
+	cout << "\nPrinting In-order: " << endl;
+	dict->printIO();
+	cout << "\nPrinting Pre-order: " << endl;
+	dict->printPre();
+	cout << "\nPrinting Post-order: " << endl;
+	dict->printPost();
 	numletters = 0;
 	//numright = 0;
 	//totalwords = 0;
@@ -37,7 +37,7 @@ Game::Game(string filen, bool AVLflag){
 }
 
 void Game::startGame() {
-	cout << "How many letters do you want?" << endl;
+	cout << "\nHow many letters do you want?" << endl;
 	cin >> numletters;
 	currletters = getLetters(numletters);
 	cout << "Your letters are: " << endl;
@@ -69,22 +69,23 @@ void Game::getWords() {
 	}
 }
 
-char * Game::getLetters(int x) {
-	char vowel[5] = {'a','e','i','o','u'};
-	char conso[21] = {'b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z'};
+char *Game::getLetters(int x) {
+	char vowel[5] = {'a', 'e', 'i', 'o', 'u'};
+	char conso[21] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
 	char *curr = new char[x];
- 	int v = rand() %(x-1) + 1;
+	int v = rand() % (x - 1) + 1;
 
 	for (int i = 0; i < v; i++) {
-		int y = rand() %5;
+		int y = rand() % 5;
 		curr[i] = vowel[y];
 	}
 	for (int i = v; i < x; i++) {
-		int y = rand() %21;
+		int y = rand() % 21;
 		curr[i] = conso[y];
 	}
 	return curr;
 }
+
 bool Game::checkWLetters(string s) {
 	char tempchar[numletters];
 	for (int i = 0; i < numletters; i++) {
@@ -92,7 +93,7 @@ bool Game::checkWLetters(string s) {
 	}
 	for (int i = 0; i < s.size(); i++) {
 		int j = 0;
-		while ((j < numletters) && (tolower(s[i]) != tempchar[j] )) {
+		while ((j < numletters) && (tolower(s[i]) != tempchar[j])) {
 			j++;
 		}
 		if (j == numletters) {
@@ -102,22 +103,21 @@ bool Game::checkWLetters(string s) {
 	}
 	return true;
 }
-void Game:: checkWordsForScore() {
+
+void Game::checkWordsForScore() {
 	NodeL *tmp = wordlist.first;
 	while (tmp != NULL) {
-		if (checkWLetters(tmp->word) ) {
+		if (checkWLetters(tmp->word)) {
 			cout << tmp->word << " is okay letter wise" << endl;
 
-			if (dict->findWord(tmp->word,dict->root)) {
+			if (dict->findWord(tmp->word, dict->root)) {
 				cout << tmp->word << " is in tree" << endl;
 				tmp->wscore = 1;
-			}
-			else {
+			} else {
 				cout << tmp->word << " is NOT in tree" << endl;
 				tmp->wscore = -1;
 			}
-		}
-		else {
+		} else {
 			cout << tmp->word << " is NOT okay letter wise" << endl;
 			tmp->wscore = -1;
 		}
@@ -125,7 +125,7 @@ void Game:: checkWordsForScore() {
 	}
 }
 
-void Game::readTreeFromFile () {
+void Game::readTreeFromFile() {
 	dict = new AVLTree(AVL);
 	ifstream file(dictfile.c_str());
 
@@ -138,8 +138,8 @@ void Game::readTreeFromFile () {
 	while (!file.eof()) {
 		file >> word;
 		//if (!file.eof()) {
-			dict->addNode(word);
-			//dict->insert(word);
+		dict->addNode(word);
+		//dict->insert(word);
 		//}
 	}
 	return;

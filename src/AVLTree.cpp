@@ -106,7 +106,6 @@ void AVLTree::addNode(string newString, NodeT *adoptiveParent) {
  */
 void AVLTree::printIO() {
 	printIO(root);
-	cout << endl;
 }
 
 
@@ -126,8 +125,6 @@ void AVLTree::printIO(NodeT *aNode) {
  */
 void AVLTree::printPre() {
 	printPre(root);
-    getMax(root);
-	cout << endl;
 }
 
 /**
@@ -146,7 +143,6 @@ void AVLTree::printPre(NodeT *aNode) {
  */
 void AVLTree::printPost() {
 	printPost(root);
-	cout << endl;
 }
 
 /**
@@ -199,25 +195,23 @@ NodeT *rightRotate(NodeT *n) {
  * (since presumably everything else above it is already set properly)
  * @param n
  */
-NodeT *leftRotate(NodeT *n){
-    NodeT *x=n->right;
-    NodeT *tmp=n->left;
-    x->left=n;
-    n->right=tmp;
-    //update height
-    if (n->left->height>n->right->height){
-        n->height=n->left->height+1;
-    }
-    else{
-        n->height=n->right->height+1;
-    }
-    if (x->left->height>x->right->height){
-        x->height=x->left->height+1;
-    }
-    else{
-        x->height=x->right->height+1;
-    }
-    return x; // new root
+NodeT *leftRotate(NodeT *n) {
+	NodeT *x = n->right;
+	NodeT *tmp = n->left;
+	x->left = n;
+	n->right = tmp;
+	//update height
+	if (n->left->height > n->right->height) {
+		n->height = n->left->height + 1;
+	} else {
+		n->height = n->right->height + 1;
+	}
+	if (x->left->height > x->right->height) {
+		x->height = x->left->height + 1;
+	} else {
+		x->height = x->right->height + 1;
+	}
+	return x; // new root
 }
 
 void AVLTree::adjustHeights(NodeT *n) {
@@ -228,14 +222,16 @@ void AVLTree::adjustHeights(NodeT *n) {
 	while (aNode != NULL) {
 
 		childHeights++;
-		cout << aNode->word << "'s height is currently " << aNode->height << flush;
+		//cout << aNode->word << "'s height is currently " << aNode->height << flush;
 
 		if (childHeights == aNode->height) {
-			cout << endl;
+			//cout << endl;
 			return; // If it's what we were going to change it to anyway, stop, because everything else above it should be okay.
-		} else if (aNode->height < childHeights) {
-			cout << ", Updating to " << childHeights << flush;
+		} else if (childHeights > aNode->height) {
 			aNode->height = childHeights;
+
+			//aNode->height = getMax(aNode);
+			//cout << ", Updating to " << aNode->height << flush;
 
 			if (avlFlag) {
 				// if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
@@ -246,7 +242,7 @@ void AVLTree::adjustHeights(NodeT *n) {
 				// adjust parent and grandparent node
 			}
 		}
-		cout << endl;
+		//cout << endl;
 
 		aNode = aNode->parent;
 	}
@@ -258,13 +254,18 @@ void AVLTree::adjustHeights(NodeT *n) {
  * @return
  */
 int AVLTree::getMax(NodeT *n) {
-	//TODO
-	if (n == NULL) {
-		return -1;
+	if (n->left == NULL) {
+		return n->right->height;
+	} else if (n->right == NULL) {
+		return n->left->height;
+	} else {
+		if (n->left->height >= n->right->height) {
+			return n->left->height;
+		} else if (n->right->height > n->left->height) {
+			return n->right->height;
+		} else {
+			cout << "Something in getMax broke, aborting..." << endl;
+			abort();
+		}
 	}
-    else {
-        cout<<"should be 0"<<endl;
-        return max(getMax(n->left), getMax(n->right)) + 1;
-    }
-
 }
