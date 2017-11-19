@@ -97,10 +97,8 @@ void AVLTree::addNode(string newString, NodeT *adoptiveParent) {
 			(addNode(newString, adoptiveParent->left));
 		}
 	}
-	if (avlFlag) {
-		// If it's an AVL tree, we adjust the heights and rotate accordingly if necessary *somewhere else*
-		adjustHeights(babyNode);
-	}
+
+	adjustHeights(babyNode); // Set the heights
 }
 
 /**
@@ -201,11 +199,27 @@ NodeT *rightRotate(NodeT *n) {
  * @param n
  */
 void AVLTree::adjustHeights(NodeT *n) {
+//	n->height = 1;
+//	int heights = 0;
+//
+//	NodeT* aNode = n->parent;
+//	while (aNode != NULL){
+//		heights++;
+//		cout << "Height of << is possibly " << endl;
+//
+//		aNode = aNode->parent;
+//	}
+
 //TODO build rotations
 	// adjust height of childs
 	//check balance
 	// if flag is true check balance
 	// adjust parent and grandparent node
+
+	if (avlFlag) {
+		// if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
+
+	}
 }
 
 

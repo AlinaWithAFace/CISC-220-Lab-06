@@ -53,12 +53,12 @@ void testAVLTree() {
 	testBst.addNode("9");
 	testBst.addNode("8");
 	testBst.addNode("8");
-    NodeT *testNode = new NodeT("david");
-    // single node return 0 so this mean the method work.
-    cout<<testBst.getMax(testNode) <<endl;
-    //return 0
-    NodeT *testNode2 = new NodeT("bill");
-    cout<<testBst.getMax(testNode2) <<endl;
+	NodeT *testNode = new NodeT("david");
+	// single node return 0 so this mean the method work.
+	cout << testBst.getMax(testNode) << endl;
+	//return 0
+	NodeT *testNode2 = new NodeT("bill");
+	cout << testBst.getMax(testNode2) << endl;
 
 	string testString = "7";
 
@@ -71,8 +71,6 @@ void testAVLTree() {
 	testBst.printIO();
 	testBst.printPre();
 	testBst.printPost();
-
-
 };
 
 void testGame() {
