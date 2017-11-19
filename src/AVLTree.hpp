@@ -52,7 +52,7 @@ public:
 
 	void adjustHeights(NodeT *n);
 
-	int getMax(NodeT *n);
+	
 };
 
 
