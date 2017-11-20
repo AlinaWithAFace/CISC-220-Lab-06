@@ -23,30 +23,30 @@ using namespace std;
 
 int main() {
 
-	//testLL();
+	testLL();
 
 	testAVLTree();
-	//testGame();
+	testGame();
 
 	///
 
-//	srand(time(NULL));
-//
-//	Game *testDictBST = new Game("testdict.txt", false);
-//
-//	cout << "****************************" << endl;
-//
-//	Game *commonDictBST = new Game("commondict.txt", false);
-//	commonDictBST->startGame();
+	srand(time(NULL));
+
+	Game *testDictBST = new Game("testdict.txt", false);
 //
 //	cout << "****************************" << endl;
 //
-//	Game *testDictAvl = new Game("testdict.txt", true);
+	Game *commonDictBST = new Game("commondict.txt", false);
+    commonDictBST->startGame();
 //
-//	cout << "****************************" << endl;
+	cout << "****************************" << endl;
 //
-//	Game *commonDictAvl = new Game("commondict.txt", true);
-//	commonDictAvl->startGame();
+	Game *testDictAvl = new Game("testdict.txt", true);
+//
+	cout << "****************************" << endl;
+//
+	Game *commonDictAvl = new Game("commondict.txt", true);
+commonDictAvl->startGame();
 
 	return 0;
 }
@@ -54,7 +54,7 @@ int main() {
 
 void testAVLTree() {
 
-//	AVLTree testBst(false);
+	AVLTree testBst(false);
 //
 //	testBst.addNode("32");
 //	testBst.addNode("17");
@@ -66,9 +66,9 @@ void testAVLTree() {
 //	testBst.addNode("2");
 //	testBst.addNode("7");
 //
-//	testBst.printIO();
-//	testBst.printPre();
-//	testBst.printPost();
+	testBst.printIO();
+	testBst.printPre();
+	testBst.printPost();
 
 	// Thanks internet https://stackoverflow.com/questions/3955680/how-to-check-if-my-avl-tree-implementation-is-correct
 

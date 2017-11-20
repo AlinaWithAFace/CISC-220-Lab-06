@@ -244,10 +244,28 @@ void AVLTree::adjustHeights(NodeT *n) {
 			int newHeight = childHeights;
 			newHeight = 1 + getMaxHeight(aNode);
 
-			if (avlFlag) {
+			
+			if (avlFlag==true) {
+				if (aNode->height == 2) {//if parent node = 2 rotate right branch
+					if (n->right->height == 1) {//rotate right
+						rotateRight(aNode);
+					} else if (n->right->height == -1) {//rotate left
+						rotateLeft(aNode);
+					}
+				} else if (newHeight == -2) { // if parent node = -2 rotate left branch
+					if (n->left->height == 1) { // rotate right
+						rotateRight(aNode);
+					} else if (n->left->height == -1) {//rotate left
+						rotateLeft(aNode);
+					}
+
+				}
+			}
 
 
-				// if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
+
+
+                // if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
 				//TODO build rotations
 				// adjust height of childs
 				//check balance
@@ -255,7 +273,7 @@ void AVLTree::adjustHeights(NodeT *n) {
 				// adjust parent and grandparent node
 
 
-			}
+
 			//cout << "Setting height to " << newHeight << endl;
 			aNode->height = newHeight;
 		}
