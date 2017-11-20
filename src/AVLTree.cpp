@@ -324,15 +324,18 @@ NodeT *AVLTree::rotateRight(NodeT *oldRoot) {
 //	return newRoot;
 	return oldRoot;
 }
+
+
 NodeT *AVLTree::rotateRL(NodeT *oldRoot) { //double right rotation
-    oldRoot->right=rotateRight(oldRoot->right);
-    NodeT* newRoot=rotateLeft(oldRoot);
-    return newRoot;
-    }
+	oldRoot->right = rotateRight(oldRoot->right);
+	NodeT *newRoot = rotateLeft(oldRoot);
+	return newRoot;
+}
+
 NodeT *AVLTree::rotateLR(NodeT *oldRoot) { //double left rotation
-    oldRoot->left=rotateRight(oldRoot->left);
-    NodeT* newRoot=rotateLeft(oldRoot);
-    return newRoot;
+	oldRoot->left = rotateRight(oldRoot->left);
+	NodeT *newRoot = rotateLeft(oldRoot);
+	return newRoot;
 }
 /// psuedocode source : http://emunix.emich.edu/~haynes/Papers/AVL/rotations.pdf
 
