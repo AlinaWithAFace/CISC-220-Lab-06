@@ -34,10 +34,6 @@ public:
 
 	int getMaxHeight(NodeT *n);
 
-    NodeT *rightRotate(NodeT *n);
-
-    NodeT *leftRotate(NodeT *n);
-
 	explicit AVLTree(bool flag);
 
 	bool findWord(string s);
@@ -52,7 +48,11 @@ public:
 
 	void adjustHeights(NodeT *n);
 
+	void balanceTree(NodeT *n);
 
+	NodeT *rotateRight(NodeT *n);
+
+	NodeT *rotateLeft(NodeT *n);
 };
 
 

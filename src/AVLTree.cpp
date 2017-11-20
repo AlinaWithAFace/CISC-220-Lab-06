@@ -169,57 +169,6 @@ void AVLTree::printPost(NodeT *aNode) {
 
 
 /**
- * Right rotation code taken from powerpoint
- * @param n
- * @return
- */
-NodeT *rotateRight(NodeT *n) {
-	NodeT *x = n->left;
-	NodeT *tmp = n->right;
-	x->right = n;
-	n->left = tmp;
-	//update height
-	if (n->left->height > n->right->height) {
-		n->height = n->left->height + 1;
-	} else {
-		n->height = n->right->height + 1;
-	}
-	if (x->left->height > x->right->height) {
-		x->height = x->left->height + 1;
-	} else {
-		x->height = x->right->height + 1;
-	}
-	return x; // new root
-
-
-}
-
-/**
- * Rotates to the left.
- * @param n
- * @return
- */
-NodeT *rotateLeft(NodeT *n) {
-	NodeT *x = n->right;
-	NodeT *tmp = n->left;
-	x->left = n;
-	n->right = tmp;
-	//update height
-	if (n->left->height > n->right->height) {
-		n->height = n->left->height + 1;
-	} else {
-		n->height = n->right->height + 1;
-	}
-	if (x->left->height > x->right->height) {
-		x->height = x->left->height + 1;
-	} else {
-		x->height = x->right->height + 1;
-	}
-	return x; // new root
-}
-
-
-/**
  * Starting with the node you just inserted, adjust the heights of its parents/grandparents/great… until a great… grandparent node’s height doesn’t change.
  * If the AVLTree flag is set, this method also checks balances and, if a node is unbalanced, calls the appropriate rotation(s) and re-adjusts heights and checks balances from that node up.
  * To adjust heights at any moment, you get the max of the height of the left child and the height of the right child, and add 1.
@@ -239,46 +188,95 @@ void AVLTree::adjustHeights(NodeT *n) {
 		if (childHeights == aNode->height) {
 			return; // If it's what we were going to change it to anyway, stop, because everything else above it should be okay.
 		} else {
-			cout << aNode->word << "'s current height: " << aNode->height << flush;
-			cout << ", trying to update height to: " << childHeights << endl;
+			//cout << aNode->word << "'s current height: " << aNode->height << flush;
+			//cout << ", trying to update height to: " << childHeights << endl;
 			int newHeight = childHeights;
 			newHeight = 1 + getMaxHeight(aNode);
 
-
-			if (avlFlag==true) {
-				if (aNode->height == 2) {//if parent node = 2 rotate right branch
-					if (n->right->height == 1) {//rotate right
-						rotateRight(aNode);
-					} else if (n->right->height == -1) {//rotate left
-						rotateLeft(aNode);
-					}
-				} else if (aNode->height == -2) { // if parent node = -2 rotate left branch
-					if (n->left->height == 1) { // rotate right
-						rotateRight(aNode);
-					} else if (n->left->height == -1) {//rotate left
-						rotateLeft(aNode);
-					}
-
-				}
-			}
-
-
-
-
-                // if it's an AVL tree, we need to rotate things to keep it balanced if the balance if off
-				//TODO build rotations
-				// adjust height of childs
-				//check balance
-				// if flag is true check balance
-				// adjust parent and grandparent node
-
-
-
 			//cout << "Setting height to " << newHeight << endl;
 			aNode->height = newHeight;
+
+			if (avlFlag) {
+				balanceTree(aNode);
+			}
 		}
 		aNode = aNode->parent;
 	}
+}
+
+/**
+ * Only called if avlflag is set to true, should start balancing the tree starting at the given node
+ * @param aNode
+ */
+void AVLTree::balanceTree(NodeT *aNode) {
+	//TODO: This is super broken, what conditions does aNode have to meet in order to start balancing the tree?
+//	if (aNode->height == 2) {//if parent node = 2 rotate right branch
+//		if (aNode->right->height == 1) {//rotate right
+//			rotateRight(aNode);
+//		} else if (aNode->right->height == -1) {//rotate left
+//			rotateLeft(aNode);
+//		}
+//	} else if (aNode->height == -2) { // if parent node = -2 rotate left branch
+//		if (aNode->left->height == 1) { // rotate right
+//			rotateRight(aNode);
+//		} else if (aNode->left->height == -1) {//rotate left
+//			rotateLeft(aNode);
+//		}
+//	}
+}
+
+/**
+ * Rotate right
+ * @param n
+ * @return
+ */
+NodeT *AVLTree::rotateRight(NodeT *n) {
+	//TODO: We can't quite check if this works yet, see balanceTree
+	cout << "Rotating right around " << n->word << endl;
+
+	NodeT *x = n->left;
+	NodeT *tmp = n->right;
+	x->right = n;
+	n->left = tmp;
+	//update height
+	if (n->left->height > n->right->height) {
+		n->height = n->left->height + 1;
+	} else {
+		n->height = n->right->height + 1;
+	}
+	if (x->left->height > x->right->height) {
+		x->height = x->left->height + 1;
+	} else {
+		x->height = x->right->height + 1;
+	}
+	return x; // new root
+}
+
+
+/**
+ * Rotates to the left.
+ * @param n
+ * @return
+ */
+NodeT *AVLTree::rotateLeft(NodeT *n) {
+	//TODO: We can't quite check if this works yet, see balanceTree
+	cout << "Rotating left around " << n->word << endl;
+	NodeT *x = n->right;
+	NodeT *tmp = n->left;
+	x->left = n;
+	n->right = tmp;
+	//update height
+	if (n->left->height > n->right->height) {
+		n->height = n->left->height + 1;
+	} else {
+		n->height = n->right->height + 1;
+	}
+	if (x->left->height > x->right->height) {
+		x->height = x->left->height + 1;
+	} else {
+		x->height = x->right->height + 1;
+	}
+	return x; // new root
 }
 
 /**
@@ -287,7 +285,7 @@ void AVLTree::adjustHeights(NodeT *n) {
  * @return
  */
 int AVLTree::getMaxHeight(NodeT *n) {
-	int maxHeight;
+	int maxHeight = 0;
 	//cout << "Checking " << n->word << "'s child nodes for max..." << endl;
 
 	if (n->left == NULL && n->right == NULL) {
