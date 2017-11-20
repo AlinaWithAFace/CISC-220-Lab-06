@@ -183,13 +183,11 @@ void AVLTree::adjustHeights(NodeT *n) {
 	while (aNode != NULL) {
 
 		childHeights++;
-		//cout << aNode->word << "'s height is currently " << aNode->height << flush;
-
+		cout << aNode->word << "'s current height: " << aNode->height << flush;
+		cout << ", trying to update height to: " << childHeights << endl;
 		if (childHeights == aNode->height) {
 			return; // If it's what we were going to change it to anyway, stop, because everything else above it should be okay.
 		} else {
-			//cout << aNode->word << "'s current height: " << aNode->height << flush;
-			//cout << ", trying to update height to: " << childHeights << endl;
 			int newHeight = childHeights;
 			newHeight = 1 + getMaxHeight(aNode);
 
@@ -204,13 +202,13 @@ void AVLTree::adjustHeights(NodeT *n) {
 }
 
 /**
- * Only called if avlflag is set to true, should start balancing the tree starting at the given node
- * @param aNode
+ * Calculate the balancefactor of a given node
+ * @param n
+ * @return
  */
-NodeT *AVLTree::balanceTree(NodeT *n) {
+int AVLTree::calculateBalance(NodeT *n) {
+
 	//cout << "\nbalancing at " << n->word << endl;
-	//TODO: This is super broken, what conditions does aNode have to meet in order to start balancing the tree?
-	NodeT *aNode = n;
 	int balanceFactor;
 	int rightWeight = 0;
 	int leftWeight = 0;
@@ -240,15 +238,43 @@ NodeT *AVLTree::balanceTree(NodeT *n) {
 		leftWeight = n->left->height;
 	}
 
-
 	balanceFactor = rightWeight - leftWeight;
+	cout << n->word << "'s balance is " << balanceFactor << endl;
 
-	cout << aNode->word << "'s balance is " << balanceFactor << endl;
+	return balanceFactor;
+}
 
-	if (balanceFactor > 1) {//if parent node = 2 rotate right branch
+
+/**
+ * Only called if avlflag is set to true, should start balancing the tree starting at the given node
+ * @param aNode
+ */
+NodeT *AVLTree::balanceTree(NodeT *n) {
+	NodeT *aNode = n;
+	int balanceFactor = calculateBalance(n);
+
+	if (balanceFactor > 2) {//if parent node = 2 rotate right branch
+		cout << "Tree is REALLY right-heavy" << endl;
+		int childBalanceFactor = calculateBalance(n->right);
+
+		if (childBalanceFactor > 1) {
+			rotateRight(aNode);
+		} else {
+			rotateLeft(aNode);
+		}
+	} else if (balanceFactor < -2) { // if parent node = -2 rotate left branch
+		cout << "Tree is REALLY left-heavy" << endl;
+		int childBalanceFactor = calculateBalance(n->right);
+
+		if (childBalanceFactor > 1) {
+			rotateRight(aNode);
+		} else {
+			rotateLeft(aNode);
+		}
+	} else if (balanceFactor > 1) {
 		cout << "Tree is right-heavy" << endl;
 		rotateLeft(aNode);
-	} else if (balanceFactor < -1) { // if parent node = -2 rotate left branch
+	} else if (balanceFactor < -1) {
 		cout << "Tree is left-heavy" << endl;
 		rotateRight(aNode);
 	}
@@ -269,19 +295,34 @@ NodeT *AVLTree::rotateRight(NodeT *oldRoot) {
 	oldRoot->left->printTNode();
 
 	//TODO: This doesn't work with more than one rotation?
-	NodeT *newRoot = oldRoot->left;
-	NodeT *tmp = oldRoot->right;
-	newRoot->right = oldRoot;
-	oldRoot->left = tmp;
+//	NodeT *newRoot = oldRoot->left;
+//	NodeT *tmp = oldRoot->right;
+//
+//	newRoot->right = oldRoot;
+//	oldRoot->parent = newRoot;
+//	oldRoot->left = tmp;
 
-	adjustHeights(newRoot->right);
-	adjustHeights(newRoot->left);
-
-	if (oldRoot == root) {
-		root = newRoot;
-	}
-	cout << newRoot->word << " is new root" << endl;
-	return newRoot;
+//	oldRoot->height++;
+//	newRoot->height--;
+//
+//	if (newRoot->right != NULL) {
+//		newRoot->right->parent = newRoot;
+//
+//	}
+//	if (newRoot->left != NULL) {
+//		newRoot->left->parent = newRoot;
+//
+//	}
+//
+//	adjustHeights(newRoot->right);
+//	adjustHeights(newRoot->left);
+//
+//	if (oldRoot == root) {
+//		root = newRoot;
+//	}
+//	cout << newRoot->word << " is new root" << endl;
+//	return newRoot;
+	return oldRoot;
 }
 
 
@@ -297,20 +338,35 @@ NodeT *AVLTree::rotateLeft(NodeT *oldRoot) {
 	cout << "Height of right child before: ";
 	oldRoot->right->printTNode();
 
-	//TODO: This doesn't work with more than one rotation?
-	NodeT *newRoot = oldRoot->right;
-	NodeT *tmp = oldRoot->left;
-	newRoot->left = oldRoot;
-	oldRoot->right = tmp;
+//	//TODO: This doesn't work with more than one rotation?
+//	NodeT *newRoot = oldRoot->right;
+//	NodeT *tmp = oldRoot->left;
+//	newRoot->left = oldRoot;
+//	oldRoot->right = tmp;
+//
+//	NodeT *tempParent = oldRoot->parent;
+//	oldRoot->parent = newRoot->parent;
+//	newRoot->parent = tempParent;
 
-	adjustHeights(newRoot->right);
-	adjustHeights(newRoot->left);
-
-	if (oldRoot == root) {
-		root = newRoot;
-	}
-	cout << newRoot->word << " is new root" << endl;
-	return newRoot;
+//	oldRoot->height++;
+//	newRoot->height--;
+//
+//	if (newRoot->right != NULL) {
+//		newRoot->right->parent = newRoot;
+//	}
+//	if (newRoot->left != NULL) {
+//		newRoot->left->parent = newRoot;
+//	}
+//
+//	adjustHeights(newRoot->right);
+//	adjustHeights(newRoot->left);
+//
+//	if (oldRoot == root) {
+//		root = newRoot;
+//	}
+//	cout << newRoot->word << " is new root" << endl;
+//	return newRoot;
+	return oldRoot;
 }
 
 /**
