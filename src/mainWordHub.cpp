@@ -64,11 +64,11 @@ void testAVLTree() {
 
 	/// Thanks internet https://stackoverflow.com/questions/3955680/how-to-check-if-my-avl-tree-implementation-is-correct
 
-	AVLTree rotationTestTreeGoal(true);
-	rotationTestTreeGoal.addNode("b");
-	rotationTestTreeGoal.addNode("a");
-	rotationTestTreeGoal.addNode("c");
-	rotationTestTreeGoal.printIO();
+//	AVLTree rotationTestTreeGoal(true);
+//	rotationTestTreeGoal.addNode("b");
+//	rotationTestTreeGoal.addNode("a");
+//	rotationTestTreeGoal.addNode("c");
+//	rotationTestTreeGoal.printIO();
 
 	AVLTree rotationTestTree1L(true);
 
@@ -77,26 +77,26 @@ void testAVLTree() {
 	rotationTestTree1L.addNode("c");
 	rotationTestTree1L.printIO();
 
-	AVLTree rotationTestTree1R(true);
-
-	rotationTestTree1R.addNode("c");
-	rotationTestTree1R.addNode("b");
-	rotationTestTree1R.addNode("a");
-	rotationTestTree1R.printIO();
-
-	AVLTree rotationTestTree2L(true);
-
-	rotationTestTree2L.addNode("a");
-	rotationTestTree2L.addNode("c");
-	rotationTestTree2L.addNode("b");
-	rotationTestTree2L.printIO();
-
-	AVLTree rotationTestTree2R(true);
-
-	rotationTestTree2R.addNode("c");
-	rotationTestTree2R.addNode("a");
-	rotationTestTree2R.addNode("b");
-	rotationTestTree2R.printIO();
+//	AVLTree rotationTestTree1R(true);
+//
+//	rotationTestTree1R.addNode("c");
+//	rotationTestTree1R.addNode("b");
+//	rotationTestTree1R.addNode("a");
+//	rotationTestTree1R.printIO();
+//
+//	AVLTree rotationTestTree2L(true);
+//
+//	rotationTestTree2L.addNode("a");
+//	rotationTestTree2L.addNode("c");
+//	rotationTestTree2L.addNode("b");
+//	rotationTestTree2L.printIO();
+//
+//	AVLTree rotationTestTree2R(true);
+//
+//	rotationTestTree2R.addNode("c");
+//	rotationTestTree2R.addNode("a");
+//	rotationTestTree2R.addNode("b");
+//	rotationTestTree2R.printIO();
 
 };
 

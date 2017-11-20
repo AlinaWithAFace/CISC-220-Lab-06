@@ -195,10 +195,9 @@ void AVLTree::adjustHeights(NodeT *n) {
 
 			//cout << "Setting height to " << newHeight << endl;
 			aNode->height = newHeight;
-
-			if (avlFlag) {
-				balanceTree(aNode);
-			}
+		}
+		if (avlFlag) {
+			aNode = balanceTree(aNode);
 		}
 		aNode = aNode->parent;
 	}
@@ -208,21 +207,59 @@ void AVLTree::adjustHeights(NodeT *n) {
  * Only called if avlflag is set to true, should start balancing the tree starting at the given node
  * @param aNode
  */
-void AVLTree::balanceTree(NodeT *aNode) {
+NodeT *AVLTree::balanceTree(NodeT *n) {
+	cout << "\nbalancing at " << n->word << endl;
 	//TODO: This is super broken, what conditions does aNode have to meet in order to start balancing the tree?
-//	if (aNode->height == 2) {//if parent node = 2 rotate right branch
-//		if (aNode->right->height == 1) {//rotate right
-//			rotateRight(aNode);
-//		} else if (aNode->right->height == -1) {//rotate left
-//			rotateLeft(aNode);
-//		}
-//	} else if (aNode->height == -2) { // if parent node = -2 rotate left branch
-//		if (aNode->left->height == 1) { // rotate right
-//			rotateRight(aNode);
-//		} else if (aNode->left->height == -1) {//rotate left
-//			rotateLeft(aNode);
-//		}
-//	}
+	NodeT *aNode = n;
+	int balanceFactor;
+	int rightWeight = 0;
+	int leftWeight = 0;
+
+	if (n->left == NULL && n->right == NULL) {
+		//cout << "Neither left nor right exist." << endl;
+	}
+
+	if (n->right == NULL) {
+		//cout << "Right NULL" << endl;
+	} else {
+		//cout << "Right exists: " << flush;
+		n->right->printTNode();
+		rightWeight = n->right->height;
+	}
+
+	if (n->left == NULL) {
+		//cout << "Left NULL" << endl;
+	} else {
+		//cout << "Left exists: " << flush;
+		n->left->printTNode();
+		leftWeight = n->left->height;
+	}
+
+	if (n->left != NULL && n->right != NULL) {
+		rightWeight = n->right->height;
+		leftWeight = n->left->height;
+	}
+
+
+	balanceFactor = rightWeight - leftWeight;
+
+	cout << aNode->word << "'s balance is " << balanceFactor << endl;
+
+	if (balanceFactor > 1) {//if parent node = 2 rotate right branch
+		if (aNode->right->height == 1) {//rotate right
+			rotateRight(aNode);
+		} else if (aNode->right->height == -1) {//rotate left
+			rotateLeft(aNode);
+		}
+	} else if (balanceFactor < -1) { // if parent node = -2 rotate left branch
+		if (aNode->left->height == 1) { // rotate right
+			rotateRight(aNode);
+		} else if (aNode->left->height == -1) {//rotate left
+			rotateLeft(aNode);
+		}
+	}
+
+	return aNode;
 }
 
 /**

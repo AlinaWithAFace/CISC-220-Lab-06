@@ -48,7 +48,7 @@ public:
 
 	void adjustHeights(NodeT *n);
 
-	void balanceTree(NodeT *n);
+	NodeT * balanceTree(NodeT *n);
 
 	NodeT *rotateRight(NodeT *n);
 
