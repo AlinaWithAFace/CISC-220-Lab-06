@@ -50,9 +50,9 @@ public:
 
 	NodeT * balanceTree(NodeT *n);
 
-	NodeT *rotateRight(NodeT *n);
+	NodeT *rotateRight(NodeT *oldRoot);
 
-	NodeT *rotateLeft(NodeT *n);
+	NodeT *rotateLeft(NodeT *oldRoot);
 };
 
 

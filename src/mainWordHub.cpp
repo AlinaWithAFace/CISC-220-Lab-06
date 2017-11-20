@@ -77,13 +77,13 @@ void testAVLTree() {
 	rotationTestTree1L.addNode("c");
 	rotationTestTree1L.printIO();
 
-//	AVLTree rotationTestTree1R(true);
-//
-//	rotationTestTree1R.addNode("c");
-//	rotationTestTree1R.addNode("b");
-//	rotationTestTree1R.addNode("a");
-//	rotationTestTree1R.printIO();
-//
+	AVLTree rotationTestTree1R(true);
+
+	rotationTestTree1R.addNode("c");
+	rotationTestTree1R.addNode("b");
+	rotationTestTree1R.addNode("a");
+	rotationTestTree1R.printIO();
+
 //	AVLTree rotationTestTree2L(true);
 //
 //	rotationTestTree2L.addNode("a");

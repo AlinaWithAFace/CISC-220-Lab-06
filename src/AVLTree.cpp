@@ -193,7 +193,7 @@ void AVLTree::adjustHeights(NodeT *n) {
 			int newHeight = childHeights;
 			newHeight = 1 + getMaxHeight(aNode);
 
-			//cout << "Setting height to " << newHeight << endl;
+			cout << "Setting height to " << newHeight << endl;
 			aNode->height = newHeight;
 		}
 		if (avlFlag) {
@@ -257,56 +257,59 @@ NodeT *AVLTree::balanceTree(NodeT *n) {
 }
 
 /**
- * Rotate right
- * @param n
+ * Rotate right around a given node
+ * @param oldRoot
  * @return
  */
-NodeT *AVLTree::rotateRight(NodeT *n) {
-	//TODO: This doesn't work
-	cout << "Rotating right around " << n->word << endl;
+NodeT *AVLTree::rotateRight(NodeT *oldRoot) {
+	cout << "\nRotating right around " << oldRoot->word << endl;
+	cout << "Height of node before: ";
+	oldRoot->printTNode();
+	cout << "Height of left child before: ";
+	oldRoot->left->printTNode();
 
-	NodeT *newRoot = n->left;
-//	NodeT *tmp = n->right;
-//	newRoot->right = n;
-//	n->left = tmp;
-//	//update height
-//	if (n->left->height > n->right->height) {
-//		n->height = n->left->height + 1;
-//	} else {
-//		n->height = n->right->height + 1;
-//	}
-//	if (newRoot->left->height > newRoot->right->height) {
-//		newRoot->height = newRoot->left->height + 1;
-//	} else {
-//		newRoot->height = newRoot->right->height + 1;
-//	}
+	//TODO: This doesn't work with more than one rotation?
+	NodeT *newRoot = oldRoot->left;
+	NodeT *tmp = oldRoot->right;
+	newRoot->right = oldRoot;
+	oldRoot->left = tmp;
+
+	adjustHeights(newRoot->right);
+	adjustHeights(newRoot->left);
+
+	if (oldRoot == root) {
+		root = newRoot;
+	}
+	cout << newRoot->word << " is new root" << endl;
 	return newRoot;
 }
 
 
 /**
  * Rotates to the left.
- * @param n
+ * @param oldRoot
  * @return
  */
-NodeT *AVLTree::rotateLeft(NodeT *n) {
-	//TODO: This doesn't work
-	cout << "Rotating left around " << n->word << endl;
-	NodeT *newRoot = n->right;
-//	NodeT *tmp = n->left;
-//	newRoot->left = n;
-//	n->right = tmp;
-//	//update height
-//	if (n->left->height > n->right->height) {
-//		n->height = n->left->height + 1;
-//	} else {
-//		n->height = n->right->height + 1;
-//	}
-//	if (newRoot->left->height > newRoot->right->height) {
-//		newRoot->height = newRoot->left->height + 1;
-//	} else {
-//		newRoot->height = newRoot->right->height + 1;
-//	}
+NodeT *AVLTree::rotateLeft(NodeT *oldRoot) {
+	cout << "\nRotating left around " << oldRoot->word << endl;
+	cout << "Height of node before: ";
+	oldRoot->printTNode();
+	cout << "Height of right child before: ";
+	oldRoot->right->printTNode();
+
+	//TODO: This doesn't work with more than one rotation?
+	NodeT *newRoot = oldRoot->right;
+	NodeT *tmp = oldRoot->left;
+	newRoot->left = oldRoot;
+	oldRoot->right = tmp;
+
+	adjustHeights(newRoot->right);
+	adjustHeights(newRoot->left);
+
+	if (oldRoot == root) {
+		root = newRoot;
+	}
+	cout << newRoot->word << " is new root" << endl;
 	return newRoot;
 }
 
