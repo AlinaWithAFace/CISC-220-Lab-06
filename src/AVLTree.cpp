@@ -283,7 +283,17 @@ NodeT *AVLTree::rotateRight(NodeT *oldRoot) {
 	cout << newRoot->word << " is new root" << endl;
 	return newRoot;
 }
-
+NodeT *AVLTree::rotateRL(NodeT *oldRoot) { //double right rotation
+    oldRoot->right=rotateRight(oldRoot->right);
+    NodeT* newRoot=rotateLeft(oldRoot);
+    return newRoot;
+    }
+NodeT *AVLTree::rotateLR(NodeT *oldRoot) { //double left rotation
+    oldRoot->left=rotateRight(oldRoot->left);
+    NodeT* newRoot=rotateLeft(oldRoot);
+    return newRoot;
+}
+/// psuedocode source : http://emunix.emich.edu/~haynes/Papers/AVL/rotations.pdf
 
 /**
  * Rotates to the left.
