@@ -26,7 +26,7 @@ int main() {
 	//testLL();
 
 	testAVLTree();
-	//testGame();
+	testGame();
 
 	///
 //	srand(time(NULL));

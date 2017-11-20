@@ -55,6 +55,8 @@ public:
 	NodeT *rotateLeft(NodeT *oldRoot);
 
 	int calculateBalance(NodeT *n);
+    NodeT *rotateRL(NodeT *oldRoot);
+    NodeT *rotateLR(NodeT *oldRoot);
 };
 
 
