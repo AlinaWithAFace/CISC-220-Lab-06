@@ -71,7 +71,7 @@ void testAVLTree() {
 	testBst.printPost();
 
 	// Thanks internet https://stackoverflow.com/questions/3955680/how-to-check-if-my-avl-tree-implementation-is-correct
-
+/*
 	AVLTree rotationTestTree1L(true);
 
 	rotationTestTree1L.addNode("a");
@@ -95,7 +95,7 @@ void testAVLTree() {
 	rotationTestTree2R.addNode("c");
 	rotationTestTree2R.addNode("a");
 	rotationTestTree2R.addNode("b");
-
+*/
 };
 
 void testGame() {

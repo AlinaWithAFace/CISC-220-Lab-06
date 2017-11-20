@@ -239,12 +239,12 @@ void AVLTree::adjustHeights(NodeT *n) {
 		if (childHeights == aNode->height) {
 			return; // If it's what we were going to change it to anyway, stop, because everything else above it should be okay.
 		} else {
-			//cout << aNode->word << "'s current height: " << aNode->height << flush;
-			//cout << ", trying to update height to: " << childHeights << endl;
+			cout << aNode->word << "'s current height: " << aNode->height << flush;
+			cout << ", trying to update height to: " << childHeights << endl;
 			int newHeight = childHeights;
 			newHeight = 1 + getMaxHeight(aNode);
 
-			
+
 			if (avlFlag==true) {
 				if (aNode->height == 2) {//if parent node = 2 rotate right branch
 					if (n->right->height == 1) {//rotate right
@@ -252,7 +252,7 @@ void AVLTree::adjustHeights(NodeT *n) {
 					} else if (n->right->height == -1) {//rotate left
 						rotateLeft(aNode);
 					}
-				} else if (newHeight == -2) { // if parent node = -2 rotate left branch
+				} else if (aNode->height == -2) { // if parent node = -2 rotate left branch
 					if (n->left->height == 1) { // rotate right
 						rotateRight(aNode);
 					} else if (n->left->height == -1) {//rotate left
