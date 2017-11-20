@@ -208,7 +208,7 @@ void AVLTree::adjustHeights(NodeT *n) {
  * @param aNode
  */
 NodeT *AVLTree::balanceTree(NodeT *n) {
-	cout << "\nbalancing at " << n->word << endl;
+	//cout << "\nbalancing at " << n->word << endl;
 	//TODO: This is super broken, what conditions does aNode have to meet in order to start balancing the tree?
 	NodeT *aNode = n;
 	int balanceFactor;
@@ -223,7 +223,7 @@ NodeT *AVLTree::balanceTree(NodeT *n) {
 		//cout << "Right NULL" << endl;
 	} else {
 		//cout << "Right exists: " << flush;
-		n->right->printTNode();
+		//n->right->printTNode();
 		rightWeight = n->right->height;
 	}
 
@@ -231,7 +231,7 @@ NodeT *AVLTree::balanceTree(NodeT *n) {
 		//cout << "Left NULL" << endl;
 	} else {
 		//cout << "Left exists: " << flush;
-		n->left->printTNode();
+		//n->left->printTNode();
 		leftWeight = n->left->height;
 	}
 
@@ -246,17 +246,11 @@ NodeT *AVLTree::balanceTree(NodeT *n) {
 	cout << aNode->word << "'s balance is " << balanceFactor << endl;
 
 	if (balanceFactor > 1) {//if parent node = 2 rotate right branch
-		if (aNode->right->height == 1) {//rotate right
-			rotateRight(aNode);
-		} else if (aNode->right->height == -1) {//rotate left
-			rotateLeft(aNode);
-		}
+		cout << "Tree is right-heavy" << endl;
+		rotateLeft(aNode);
 	} else if (balanceFactor < -1) { // if parent node = -2 rotate left branch
-		if (aNode->left->height == 1) { // rotate right
-			rotateRight(aNode);
-		} else if (aNode->left->height == -1) {//rotate left
-			rotateLeft(aNode);
-		}
+		cout << "Tree is left-heavy" << endl;
+		rotateRight(aNode);
 	}
 
 	return aNode;
@@ -268,25 +262,25 @@ NodeT *AVLTree::balanceTree(NodeT *n) {
  * @return
  */
 NodeT *AVLTree::rotateRight(NodeT *n) {
-	//TODO: We can't quite check if this works yet, see balanceTree
+	//TODO: This doesn't work
 	cout << "Rotating right around " << n->word << endl;
 
-	NodeT *x = n->left;
-	NodeT *tmp = n->right;
-	x->right = n;
-	n->left = tmp;
-	//update height
-	if (n->left->height > n->right->height) {
-		n->height = n->left->height + 1;
-	} else {
-		n->height = n->right->height + 1;
-	}
-	if (x->left->height > x->right->height) {
-		x->height = x->left->height + 1;
-	} else {
-		x->height = x->right->height + 1;
-	}
-	return x; // new root
+	NodeT *newRoot = n->left;
+//	NodeT *tmp = n->right;
+//	newRoot->right = n;
+//	n->left = tmp;
+//	//update height
+//	if (n->left->height > n->right->height) {
+//		n->height = n->left->height + 1;
+//	} else {
+//		n->height = n->right->height + 1;
+//	}
+//	if (newRoot->left->height > newRoot->right->height) {
+//		newRoot->height = newRoot->left->height + 1;
+//	} else {
+//		newRoot->height = newRoot->right->height + 1;
+//	}
+	return newRoot;
 }
 
 
@@ -296,24 +290,24 @@ NodeT *AVLTree::rotateRight(NodeT *n) {
  * @return
  */
 NodeT *AVLTree::rotateLeft(NodeT *n) {
-	//TODO: We can't quite check if this works yet, see balanceTree
+	//TODO: This doesn't work
 	cout << "Rotating left around " << n->word << endl;
-	NodeT *x = n->right;
-	NodeT *tmp = n->left;
-	x->left = n;
-	n->right = tmp;
-	//update height
-	if (n->left->height > n->right->height) {
-		n->height = n->left->height + 1;
-	} else {
-		n->height = n->right->height + 1;
-	}
-	if (x->left->height > x->right->height) {
-		x->height = x->left->height + 1;
-	} else {
-		x->height = x->right->height + 1;
-	}
-	return x; // new root
+	NodeT *newRoot = n->right;
+//	NodeT *tmp = n->left;
+//	newRoot->left = n;
+//	n->right = tmp;
+//	//update height
+//	if (n->left->height > n->right->height) {
+//		n->height = n->left->height + 1;
+//	} else {
+//		n->height = n->right->height + 1;
+//	}
+//	if (newRoot->left->height > newRoot->right->height) {
+//		newRoot->height = newRoot->left->height + 1;
+//	} else {
+//		newRoot->height = newRoot->right->height + 1;
+//	}
+	return newRoot;
 }
 
 /**
