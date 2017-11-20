@@ -18,8 +18,8 @@ class Game {
 	AVLTree *dict;
 	int numletters;
 	char *currletters;
-	//int numright;
-	//int totalwords;
+	int numright;
+	int totalwords;
 	int score;
 	LL wordlist;
 	string dictfile;

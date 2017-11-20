@@ -28,9 +28,9 @@ Game::Game(string filen, bool AVLflag) {
 	dict->printPre();
 	dict->printPost();
 	numletters = 0;
-	//numright = 0;
-	//totalwords = 0;
-//	wordlist = new LL();
+	numright = 0;
+	totalwords = 0;
+	//wordlist = new LL();
 }
 
 void Game::startGame() {
@@ -50,9 +50,9 @@ void Game::startGame() {
 	wordlist.getScore();
 	cout << "Final Score is: " << wordlist.score << endl;
 
-	//int score = numright * 3 - (totalwords-numright) * 6;
-	//cout << "Number of valid words: " << numright << " Invalid words: " << (totalwords = numright) << endl;
-	//cout << "Final Score is: "  << score << endl;
+	int score = numright * 3 - (totalwords-numright) * 6;
+	cout << "Number of valid words: " << numright << " Invalid words: " << (totalwords = numright) << endl;
+	cout << "Final Score is: "  << score << endl;
 }
 
 
@@ -62,7 +62,7 @@ void Game::getWords() {
 	while (s != "-1") {
 		wordlist.push(s);
 		cin >> s;
-		//cout << endl;
+		cout << endl;
 	}
 }
 

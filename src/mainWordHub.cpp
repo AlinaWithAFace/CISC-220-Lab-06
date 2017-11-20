@@ -29,17 +29,18 @@ int main() {
 	testGame();
 
 	///
-//	srand(time(NULL));
-//	Game *testDictBST = new Game("testdict.txt", false);
-//	cout << "****************************" << endl;
-//	Game *commonDictBST = new Game("commondict.txt", false);
-//	commonDictBST->startGame();
-//	cout << "****************************" << endl;
-//	Game *testDictAvl = new Game("testdict.txt", true);
-//	cout << "****************************" << endl;
-//	Game *commonDictAvl = new Game("commondict.txt", true);
-//	commonDictAvl->startGame();
-
+    /*
+	srand(time(NULL));
+	Game *testDictBST = new Game("testdict.txt", false);
+	cout << "****************************" << endl;
+	Game *commonDictBST = new Game("commondict.txt", false);
+	commonDictBST->startGame();
+	cout << "****************************" << endl;
+	Game *testDictAvl = new Game("testdict.txt", true);
+	cout << "****************************" << endl;
+    Game *commonDictAvl = new Game("commondict.txt", true);
+	commonDictAvl->startGame();
+    */
 	return 0;
 }
 
